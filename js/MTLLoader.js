@@ -19,7 +19,6 @@ THREE.MTLLoader.prototype = {
 		var scope = this;
 
 		var loader = new THREE.XHRLoader( this.manager );
-		loader.setCrossOrigin( this.crossOrigin );
 		loader.load( url, function ( text ) {
 
 			onLoad( scope.parse( text ) );
@@ -411,7 +410,6 @@ THREE.MTLLoader.MaterialCreator.prototype = {
 			texture = new THREE.Texture();
 
 			loader = new THREE.ImageLoader( manager );
-			loader.setCrossOrigin( this.crossOrigin );
 			loader.load( url, function ( image ) {
 
 				texture.image = THREE.MTLLoader.ensurePowerOfTwo_( image );

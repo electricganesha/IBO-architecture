@@ -1,6 +1,6 @@
 $.ajax({
   type: "GET",
-  url: "js/three.js",
+  url: "js/three.min.js",
   dataType: "script",
   async: false
 });
@@ -47,22 +47,84 @@ $.ajax({
   async: false
 });
 
-// TEXTURES
-var loader = new THREE.TextureLoader();
+$.ajax({
+  type: "GET",
+  url: "js/jscolor.min.js",
+  dataType: "script",
+  async: false
+});
 
-var texturaCadeira = loader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_vermelho_small.jpg');
+var menuDiv = document.createElement("div");
+menuDiv.id = "menuDiv";
+menuDiv.style.left = "15%";
+menuDiv.style.bottom = "0%";
+menuDiv.style.position = "fixed";
+menuDiv.style.width = "70%";
+menuDiv.style.height = "15%";
+menuDiv.style.background = "black";
+menuDiv.style.borderTopLeftRadius = "25px";
+menuDiv.style.borderTopRightRadius = "25px";
+var vicousticLogo = document.createElement("img");
+vicousticLogo.setAttribute("src", "img/vicousticLogo.png");
+vicousticLogo.style.marginLeft = "3%";
+vicousticLogo.style.marginTop = "5%";
+menuDiv.appendChild(vicousticLogo);
+var colorPickerButton = document.createElement("button");
+colorPickerButton.setAttribute("id", "colorPicker");
+colorPickerButton.style.border = "2px solid black";
+colorPickerButton.style.marginLeft = "3%";
+colorPickerButton.style.marginLeft = "13%";
+colorPickerButton.setAttribute("class", "jscolor {valueElement:'chosen-value', uppercase:false, onFineChange:'setColorPlacaEsquerda(this)', width:101, padding:0, shadow:false, borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}");
+colorPickerButton.innerHTML = "Left Panel Color";
+menuDiv.appendChild(colorPickerButton);
+var colorPickerButton = document.createElement("button");
+colorPickerButton.setAttribute("id", "colorPicker");
+colorPickerButton.style.border = "2px solid black";
+colorPickerButton.style.marginLeft = "5%";
+colorPickerButton.setAttribute("class", "jscolor {valueElement:'chosen-value', uppercase:false, onFineChange:'setColorPlacaCentro(this)', width:101, padding:0, shadow:false, borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}");
+colorPickerButton.innerHTML = "Center Panel Color";
+menuDiv.appendChild(colorPickerButton);
+var colorPickerButton = document.createElement("button");
+colorPickerButton.setAttribute("id", "colorPicker");
+colorPickerButton.style.border = "2px solid black";
+colorPickerButton.style.marginLeft = "5%";
+colorPickerButton.setAttribute("class", "jscolor {valueElement:'chosen-value', uppercase:false,  onFineChange:'setColorPlacaDireita(this)', width:101, padding:0, shadow:false, borderWidth:0, backgroundColor:'transparent', insetColor:'#000'}");
+colorPickerButton.innerHTML = "Right Panel Color";
+menuDiv.appendChild(colorPickerButton);
 
-var texturaCadeiraSelect = loader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg');
+document.body.appendChild(menuDiv);
 
-var texturaCadeiraHighlight = loader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg');
+$('#menuDiv').bind('mouseenter' ,"*", function(e){
+  mouseIsOnMenu = true;
+  controls.lookSpeed = 0;
+},false);
 
-var texturaCadeiraNormalMap = loader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg');
+$('#menuDiv').bind('mouseleave', "*", function(e){
+  mouseIsOnMenu = false;
+},false);
+
+$('#colorPicker').bind('mouseenter' ,"*", function(e){
+  mouseIsOnMenu = true;
+  controls.lookSpeed = 0;
+},false);
+
+$('#colorPicker').bind('mouseleave', "*", function(e){
+  mouseIsOnMenu = false;
+},false);
+
+var textureLoader = new THREE.TextureLoader();
+
+var texturaCadeiraHighlight = textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg');
+
+var texturaCadeiraNormalMap = textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg');
 
 texturaCadeiraNormalMap.minFilter = THREE.LinearFilter;
 
-var texturaBracoNormalMap = loader.load('models/Cinema_Motta/Braco_Novo/BracoCadeira_Normal_small.jpg');
-
-var texturaBraco = loader.load('models/Cinema_Motta/Braco_Novo/BracoCadeira_Diffuse_small.jpg');
+// create the material
+var materialcadeiraHighLight = new THREE.MeshPhongMaterial( {
+  map: texturaCadeiraHighlight,
+  normalMap: texturaCadeiraNormalMap
+});
 
 // BOOLEANS
 
@@ -130,29 +192,6 @@ var screenReferenceSphere; // the sphere (invisible) located in the middle of th
 
 var plane; // the video screen
 
-
-// create the material
-var materialcadeiraMobileHighlight = new THREE.MeshBasicMaterial( {
-  map: texturaCadeiraHighlight
-});
-
-// create the material
-var materialcadeiraMobile = new THREE.MeshBasicMaterial( {
-  map: texturaCadeira
-});
-
-// create the material
-var materialcadeiraHighLight = new THREE.MeshPhongMaterial( {
-  map: texturaCadeiraHighlight,
-  normalMap: texturaCadeiraNormalMap
-});
-
-// create the material
-var materialcadeiraNormal = new THREE.MeshPhongMaterial( {
-  map: texturaCadeira,
-  normalMap: texturaCadeiraNormalMap
-});
-
 //WEB AUDIO
 // Detect if the audio context is supported.
 window.AudioContext = (
@@ -184,7 +223,6 @@ navigator.getUserMedia = (navigator.getUserMedia ||
   var gainNode = audioCtx.createGain();
 
   var source;
-
 
 // WEB AUDIO
 function setupAudioProcessing()
@@ -289,19 +327,25 @@ function startLoadingScene() {
   loader = new THREE.JSONLoader();
   loader.load( "models/cadeiraloading.js", function( geometry,materials ) {
 
-  material1 = new THREE.MeshPhongMaterial();
-  material1.map = materials[0].map;
-  material1.normalMap = texturaCadeiraNormalMap;
+  material1 = new THREE.MeshPhongMaterial(
+  {
+  map : materials[0].map,
+  normalMap : textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg'),
+  });
   materials[0] = material1;
 
-  material2 = new THREE.MeshPhongMaterial();
-  material2.map = materials[1].map;
-  material2.normalMap = texturaBracoNormalMap;
+  material2 = new THREE.MeshPhongMaterial(
+  {
+  map : materials[1].map,
+  normalMap : textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg'),
+  });
   materials[1] = material2;
 
-  material3 = new THREE.MeshPhongMaterial();
-  material3.map = materials[2].map;
-  material3.normalMap = texturaBracoNormalMap;
+  material3 = new THREE.MeshPhongMaterial(
+  {
+  map : materials[2].map,
+  normalMap : textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg'),
+  });
   materials[2] = material3;
 
   loaderMesh = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial(materials) );
@@ -402,9 +446,34 @@ function init() {
 function loadScene() {
   // load venue status from DB
 
+  // TEXTURES
+  var texturaBracoNormalMap = textureLoader.load('models/Cinema_Motta/Braco_Novo/BracoCadeira_Normal_small.jpg');
+  var texturaBraco = textureLoader.load('models/Cinema_Motta/Braco_Novo/BracoCadeira_Diffuse_small.jpg');
+  // create the material
+  var materialcadeiraMobileHighlight = new THREE.MeshBasicMaterial( {
+    map: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg'),
+  });
+
+  // create the material
+  var materialcadeiraMobile = new THREE.MeshBasicMaterial( {
+    map: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_vermelho_small.jpg'),
+  });
+
+  // create the material
+  var materialcadeiraHighLight = new THREE.MeshPhongMaterial( {
+    map: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg'),
+    normalMap: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg'),
+  });
+
+  // create the material
+  var materialcadeiraNormal = new THREE.MeshPhongMaterial( {
+    map: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg'),
+    normalMap: textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg'),
+  });
+
   loadSala();
-  loadCadeiras(populateCadeirasInstances);
-  loadBracos(populateBracosInstances);
+  loadCadeiras(populateCadeirasInstances,materialcadeiraNormal,materialcadeiraHighLight);
+  loadBracos(populateBracosInstances,texturaBracoNormalMap,texturaBraco);
 
   // load the model for the EYE icon
   loader.load( "models/Cinema_Motta/olho_v03.js", function( geometry,materials ) {
@@ -418,7 +487,7 @@ function loadScene() {
   plane.position.x = -6.5;
   plane.position.y = 1.2;
   plane.rotation.y = Math.PI/2;
-  mainScene.add( plane );
+  //mainScene.add( plane );
 }
 
 //
@@ -427,10 +496,122 @@ function loadScene() {
 function loadSala() {
   var loaderJSON = new THREE.JSONLoader();
 
-  loaderJSON.load( "models/Cinema_Motta/tela_final.js", function( geometry,material ) {
-    telaFinal = new THREE.Mesh(geometry,new THREE.MeshBasicMaterial());
-    telaFinal.position.y += 0.5;
-    mainScene.add(telaFinal);
+  loaderJSON.load( "models/Cinema_Motta/placafrente.js", function( geometry,material ) {
+
+    material = new THREE.MeshBasicMaterial({
+      color:0x000000,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.name="placatras";
+    mainScene.add(testePlacas);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/placatras.js", function( geometry,material ) {
+
+
+    texturaAlpha = textureLoader.load('models/organic.jpg');
+
+    texturaAlpha.wrapS = THREE.RepeatWrapping;
+    texturaAlpha.wrapT = THREE.RepeatWrapping;
+    texturaAlpha.repeat.set( 4, 8 );
+
+    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+    material = new THREE.MeshBasicMaterial({
+      transparent:true,
+      opacity:0.8,
+      alphaMap:texturaAlpha,
+      normalMap:texturaNormal,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.name="placafrente";
+    mainScene.add(testePlacas);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/placaDireitaFrente.js", function( geometry,material ) {
+
+    material = new THREE.MeshBasicMaterial({
+      color:0x000000,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.name="placaDireitaTras";
+    mainScene.add(testePlacas);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/placaDireitaTras.js", function( geometry,material ) {
+
+
+    texturaAlpha = textureLoader.load('models/organic.jpg');
+
+    texturaAlpha.wrapS = THREE.RepeatWrapping;
+    texturaAlpha.wrapT = THREE.RepeatWrapping;
+    texturaAlpha.repeat.set( 4, 8 );
+
+    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+    material = new THREE.MeshBasicMaterial({
+      transparent:true,
+      opacity:0.8,
+      alphaMap:texturaAlpha,
+      normalMap:texturaNormal,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.name="placaDireitaFrente";
+    mainScene.add(testePlacas);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/placaCentroTras.js", function( geometry,material ) {
+
+    material = new THREE.MeshBasicMaterial({
+      color:0x000000,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.position.x = testePlacas.position.x-0.7;
+    testePlacas.position.y = testePlacas.position.y+0.7;
+    testePlacas.name="placaCentroTras";
+    mainScene.add(testePlacas);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/placaCentroFrente.js", function( geometry,material ) {
+
+
+    texturaAlpha = textureLoader.load('models/organic.jpg');
+
+    texturaAlpha.wrapS = THREE.RepeatWrapping;
+    texturaAlpha.wrapT = THREE.RepeatWrapping;
+    texturaAlpha.repeat.set( 4, 8 );
+
+    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+    material = new THREE.MeshBasicMaterial({
+      transparent:true,
+      opacity:0.8,
+      alphaMap:texturaAlpha,
+      normalMap:texturaNormal,
+    });
+
+    material.combine = THREE.MixOperation;
+
+    testePlacas = new THREE.Mesh(geometry,material);
+    testePlacas.position.x = testePlacas.position.x-0.7;
+    testePlacas.position.y = testePlacas.position.y+0.7;
+    testePlacas.name="placaCentroFrente";
+    mainScene.add(testePlacas);
   });
 
   // load JSON model
@@ -505,7 +686,7 @@ function loadSala() {
 //
 // here we load the chairs
 //
-function loadCadeiras(populateCadeirasInstances) {
+function loadCadeiras(populateCadeirasInstances,materialcadeiraNormal,materialcadeiraHighLight) {
 
   var loaderJSON = new THREE.JSONLoader();
 
@@ -532,14 +713,14 @@ function loadCadeiras(populateCadeirasInstances) {
         bufferGeometry = child.geometry;
       }
     });
-    populateCadeirasInstances(mesh,normalsArray,bufferGeometry); // we carry on through a callback to load the models synchronously
+    populateCadeirasInstances(mesh,normalsArray,bufferGeometry,materialcadeiraNormal,materialcadeiraHighLight); // we carry on through a callback to load the models synchronously
   });
 }
 
 //
 // 3. here we iterate on the point cloud to replicate the instances and position each instance in the correct place
 //
-function populateCadeirasInstances(mesh, normalsArray, bufferGeometry) {
+function populateCadeirasInstances(mesh, normalsArray, bufferGeometry,materialcadeiraNormal) {
   // get the origin (from) and vertical axis vectors
   var from = new THREE.Vector3( 0,0,0 );
   var vAxis = new THREE.Vector3( -1,0,0 );
@@ -603,7 +784,7 @@ function populateCadeirasInstances(mesh, normalsArray, bufferGeometry) {
 //
 // here we load the chair arms
 //
-function loadBracos(populateBracosInstances){
+function loadBracos(populateBracosInstances,texturaBracoNormalMap,texturaBraco){
   // single geometry for geometry merge
   var singleGeometry = new THREE.Geometry();
 
@@ -706,6 +887,15 @@ function onMouseMove(e) {
 
   mouse.x = 2 * (e.clientX / window.innerWidth) - 1;
   mouse.y = 1 - 2 * (e.clientY / window.innerHeight);
+
+  if(mouse.y > -0.99 && mouse.y <-0.56)
+  {
+    mouseIsOnMenu = true;
+    controls.lookSpeed = 0;
+  }
+  else {
+    mouseIsOnMenu = false;
+  }
 
   // define the look speed through the mouse position
   // if mouse is moving to the edges of the screen, speed increases
@@ -812,7 +1002,7 @@ var primeiravez = true;
 //
 function onMouseDown(e) {
   // if we are in the cinema overview
-  if(!sittingDown) {
+  if(!sittingDown && !mouseIsOnMenu) {
     // normal raycaster variables
     var intersectedOne = false;
 
@@ -1155,3 +1345,30 @@ function setupTweenOverview() {
     },2000).easing(TWEEN.Easing.Sinusoidal.InOut).start();
   }).start();
 }
+
+function setColorPlacaEsquerda(picker) {
+    //document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+    var selectedObject = mainScene.getObjectByName("placafrente");
+
+    selectedObject.material.color.setHex(0xfff000);
+    var color = new THREE.Color().setRGB(picker.rgb[0], picker.rgb[1], picker.rgb[2]);
+    selectedObject.material.color.setHex("0x"+picker.toString());
+  }
+
+  function setColorPlacaCentro(picker) {
+      //document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+      var selectedObject = mainScene.getObjectByName("placaCentroFrente");
+
+      selectedObject.material.color.setHex(0xfff000);
+      var color = new THREE.Color().setRGB(picker.rgb[0], picker.rgb[1], picker.rgb[2]);
+      selectedObject.material.color.setHex("0x"+picker.toString());
+    }
+
+    function setColorPlacaDireita(picker) {
+        //document.getElementsByTagName('body')[0].style.color = '#' + picker.toString()
+        var selectedObject = mainScene.getObjectByName("placaDireitaFrente");
+
+        selectedObject.material.color.setHex(0xfff000);
+        var color = new THREE.Color().setRGB(picker.rgb[0], picker.rgb[1], picker.rgb[2]);
+        selectedObject.material.color.setHex("0x"+picker.toString());
+      }

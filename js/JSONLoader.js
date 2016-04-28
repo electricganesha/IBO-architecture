@@ -19,7 +19,7 @@ THREE.JSONLoader = function ( manager ) {
 };
 
 THREE.JSONLoader.prototype = {
-    
+
 	constructor: THREE.JSONLoader,
 
 	// Deprecated
@@ -44,7 +44,6 @@ THREE.JSONLoader.prototype = {
 		var texturePath = this.texturePath && ( typeof this.texturePath === "string" ) ? this.texturePath : THREE.Loader.prototype.extractUrlBase( url );
 
 		var loader = new THREE.XHRLoader( this.manager );
-		loader.setCrossOrigin( this.crossOrigin );
 		loader.setWithCredentials( this.withCredentials );
 		loader.load( url, function ( text ) {
 
@@ -131,9 +130,9 @@ THREE.JSONLoader.prototype = {
 			vertices = json.vertices,
 			normals = json.normals,
 			colors = json.colors,
-                
+
 			nUvLayers = 0;
-            
+
 			if ( json.uvs !== undefined ) {
 
 				// disregard empty arrays
@@ -530,17 +529,17 @@ THREE.JSONLoader.prototype = {
 		};
 
 		if ( json.materials === undefined || json.materials.length === 0 ) {
-            
+
             importedNormals = json.normals;
-            
+
 			return { geometry: geometry, normals: importedNormals };
 
 		} else {
-            
+
             importedNormals = json.normals;
 
 			var materials = THREE.Loader.prototype.initMaterials( json.materials, texturePath, this.crossOrigin );
-            
+
 			return { geometry: geometry, materials: materials, normals: importedNormals };
 
 		}
