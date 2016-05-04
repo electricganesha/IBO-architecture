@@ -29,71 +29,253 @@
         overflow-y:hidden;
         }
 
-        .ui-datepicker-calendar{
+        #menuDiv{
+          background-color: #d9d9da;
+          bottom: 0%;
+          position: fixed;
+          width: 100%;
+          height:50px;
+          z-index: 1;
+        }
+
+        #btnDiv{
           margin: auto;
-          width: 90%;
-          font-family: osl;
-          color: #344b5d;
+          width: 508px;
+          height: 100%;
         }
 
-        .ui-datepicker-title{
-          font-family: osb;
-          color: #e54b65;
-          border-bottom: solid 2px #344b5d;
-          text-transform: uppercase;
+        #vicousticLogo{
+          margin-left: 150px;
+          margin-top: 5px;
+          float: left;
         }
 
-        .ui-datepicker-calendar a {
-          font-family: osl;
+        #menuBTEsquerda{
+          background-image: url('img/Vicoustic_botoes-normal-ing_0000_Layer-1.png');
+          background-repeat: no-repeat;
+          width: 168px;
+          height: 53px;
+          float: left;
+          cursor: pointer;
+        }
+
+        #menuBTCentro{
+          background-image: url('img/Vicoustic_botoes-normal-ing_0001_Layer-2.png');
+          width: 168px;
+          height: 53px;
+          float: left;
+          cursor: pointer;
+        }
+
+        #menuBTDireita{
+          background-image: url('img/Vicoustic_botoes-normal-ing_0002_Layer-0.png');
+          width: 169px;
+          height: 53px;
+          float: left;
+          cursor: pointer;
+        }
+
+        #menuEsquerda{
+          width: 800px;
+          height: 188px;
+          bottom: 55px;
+          position: absolute;
+          left:0;
+          right:0;
+          margin-left:auto;
+          margin-right:auto;
+          text-align: center;
+          display: none;
+        }
+
+        #esquerda{
+          background-color: #eeeeee;
+          width: 100%;
+          height: 175px;
+        }
+
+        #closeBt{
+          background-image: url('img/Close_button.png');
+          width: 26px;
+          height: 26px;
+          float: right;
+          margin-right: -13px;
+          margin-top: -188px;
+          cursor: pointer;
+        }
+
+        #nameBar{
+          background-color: #ffa023;
+          width: 100%;
+          height: 30px;
+          box-shadow: 0px 2px 5px #b8b8b8;
+        }
+
+        #name1{
+          font-family: osr;
           color: #FFF;
-          text-decoration: none;
+          padding-top: 4px;
+          width: 160px;
+          height: 100%;
+          margin: 0;
+          display: inline-block;
         }
 
-        .ui-datepicker-calendar a:hover {
-          color: #1bbc9b;
+        #name2{
+          font-family: osr;
+          color: #FFF;
+          width: 140px;
+          height: 100%;
+          margin: 0;
+          display: inline-block;
         }
 
-        .ui-datepicker-calendar thead {
-          font-family: osb;
-          color: #e54b65;
-          pointer-events: all;
-          cursor: auto;
+        #name3{
+          font-family: osr;
+          color: #FFF;
+          width: 320px;
+          height: 100%;
+          margin: 0;
+          display: inline-block;
         }
 
-        @-webkit-keyframes coloranim {
-            0%     {background-color:#1cbb9b;}
-            50.0%  {background-color:#e54b65;}
-            100.0%  {background-color:#1cbb9b;}
+        #name4{
+          font-family: osr;
+          color: #FFF;
+          width: 160px;
+          height: 100%;
+          margin: 0;
+          display: inline-block;
         }
 
-        @keyframes coloranim {
-            0%     {background-color:#1cbb9b;}
-            50.0%  {background-color:#e54b65;}
-            100.0%  {background-color:#1cbb9b;}
+        #modelsBar{
+          border-right:groove 1px #969696;
+          width: 160px;
+          height: 125px;
+          margin-top: 10px;
+          float: left;
         }
 
-        @-webkit-keyframes coloranimbt {
-            0%     {background-color:rgba(0, 0, 0, 0.7);}
-            50.0%  {background-color:#e54b65;}
-            100.0%  {background-color:rgba(0, 0, 0, 0.7);}
+        #models1{
+          width: 100%;
+          height: 38px;
+          cursor: pointer;
         }
 
-        @keyframes coloranimbt {
-            0%     {background-color:rgba(0, 0, 0, 0.7);}
-            50.0%  {background-color:#e54b65;}
-            100.0%  {background-color:rgba(0, 0, 0, 0.7);}
+        #models1Img{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
         }
 
-        @-webkit-keyframes coloranimLoading {
-            0%     {color:#ffffff;}
-            50.0%  {color:#000000;}
-            100.0%  {color:#ffffff;}
+        #models1Name{
+          width:90px;
+          float: right;
+          font-family: osl;
+          text-align: left;
+          color: #e46100;
+          height: 30px;
+          margin: 0;
+          padding-top: 10px;
         }
 
-        @keyframes coloranimLoading {
-            0%     {color:#ffffff;}
-            50.0%  {color:#000000;}
-            100.0%  {color:#ffffff;}
+        #models2{
+          width: 100%;
+          height: 38px;
+          margin-top: 3px;
+          cursor: pointer;
+        }
+
+        #models2Img{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
+        }
+
+        #models2Name{
+          width:90px;
+          float: right;
+          font-family: osl;
+          text-align: left;
+          color: #e46100;
+          height: 30px;
+          margin: 0;
+          padding-top: 10px;
+        }
+
+        #models3{
+          width: 100%;
+          height: 38px;
+          margin-top: 3px;
+          cursor: pointer;
+        }
+
+        #models3Img{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
+        }
+
+        #models3Name{
+          width:90px;
+          float: right;
+          font-family: osl;
+          text-align: left;
+          color: #e46100;
+          height: 30px;
+          margin: 0;
+          padding-top: 10px;
+        }
+
+        #backgroundBar{
+          border-right: groove 1px #969696;
+          width: 160px;
+          height: 125px;
+          margin-top: 10px;
+          float: left;
+        }
+        #colorBar{
+          border-right: groove 1px #969696;
+          width: 320px;
+          height: 125px;
+          margin-top: 10px;
+          float: left;
+        }
+        #favBar{
+          width: 155px;
+          height: 125px;
+          margin-top: 10px;
+          float: left;
+        }
+
+        #trianguloImgEsquerda{
+          background-image: url('img/ponteiro.png');
+          width: 15px;
+          height: 8px;
+          margin-top: -1px;
+          float: left;
+          margin-left: 225px;
+          display: none;
+        }
+
+        #trianguloImgCentro{
+          background-image: url('img/ponteiro.png');
+          width: 15px;
+          height: 8px;
+          margin-top: -1px;
+          float: left;
+          margin-left: 390px;
+          display: none;
+        }
+
+        #trianguloImgDireita{
+          background-image: url('img/ponteiro.png');
+          width: 15px;
+          height: 8px;
+          margin-top: -1px;
+          float: right;
+          margin-right: 225px;
+          display: none;
         }
     </style>
   </head>
@@ -101,6 +283,55 @@
   <body>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery-ui.js"></script>
+    <div id="menuDiv">
+      <img id="vicousticLogo" src="img/logo-vicoustic.png">
+      <div id="btnDiv">
+        <div id="menuBTEsquerda">
+        </div>
+        <div id="menuBTCentro">
+        </div>
+        <div id="menuBTDireita">
+        </div>
+      </div>
+    </div>
+    <div id="menuEsquerda">
+      <div id="esquerda">
+        <div id="nameBar">
+          <p id="name1">MODELS</p>
+          <p id="name2">BACKGROUND</p>
+          <p id="name3">COLOR</p>
+          <p id="name4">FAVOURITES</p>
+        </div>
+        <div id="modelsBar">
+          <div id="models1">
+            <img id="models1Img" src="img/Diamond_icon.png"></img>
+            <p id="models1Name">Diamond</p>
+          </div>
+          <div id="models2">
+            <img id="models2Img" src="img/Stylo_icon.png"></img>
+            <p id="models2Name">Stylo</p>
+          </div>
+          <div id="models3">
+            <img id="models3Img" src="img/Symmetric_icon.png"></img>
+            <p id="models3Name">Symmetric</p>
+          </div>
+        </div>
+        <div id="backgroundBar">
+        </div>
+        <div id="colorBar">
+        </div>
+        <div id="favBar">
+        </div>
+      </div>
+      <div id="closeBt">
+      </div>
+      <div id="trianguloImgEsquerda">
+      </div>
+      <div id="trianguloImgCentro">
+      </div>
+      <div id="trianguloImgDireita">
+      </div>
+    </div>
     <script>
     function detectmob() {
       if( navigator.userAgent.match(/Android/i)
