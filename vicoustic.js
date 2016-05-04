@@ -228,358 +228,71 @@ THREE.DefaultLoadingManager.onError = function () {
 };
 
 function menu(){
-  var menuDiv = document.createElement("div");
-  menuDiv.id = "menuDiv";
-  menuDiv.style.backgroundColor = "#d9d9da";
-  menuDiv.style.bottom = "0%";
-  menuDiv.style.position = "fixed";
-  menuDiv.style.width = "100%";
-  menuDiv.style.height = "50px";
 
-  var btnDiv = document.createElement("div");
-  btnDiv.id = "btnDiv";
-  btnDiv.style.margin = "auto";
-  btnDiv.style.width = "508px";
-  btnDiv.style.height = "100%";
-
-  var vicousticLogo = document.createElement("img");
-  vicousticLogo.setAttribute("src", "img/logo-vicoustic.png");
-  vicousticLogo.style.marginLeft = "150px";
-  vicousticLogo.style.marginTop = "5px";
-  vicousticLogo.style.float = "left";
-  menuDiv.appendChild(vicousticLogo);
-
-  var menuBTEsquerda = document.createElement("div");
-  menuBTEsquerda.id = "menuBTEsquerda";
-  menuBTEsquerda.style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0000_Layer-1.png')";
-  menuBTEsquerda.style.backgroundRepeat = "no-repeat";
-  menuBTEsquerda.style.width = "168px";
-  menuBTEsquerda.style.height = "53px";
-  menuBTEsquerda.style.float = "left";
-  menuBTEsquerda.style.cursor = "pointer";
-  btnDiv.appendChild(menuBTEsquerda);
-   menuBTEsquerda.onclick = function() {
+   document.getElementById("menuBTEsquerda").onclick = function() {
      document.getElementById('menuEsquerda').style.display = "block";
      document.getElementById('trianguloImgEsquerda').style.display = "block";
      document.getElementById('trianguloImgCentro').style.display = "none";
      document.getElementById('trianguloImgDireita').style.display = "none";
    }
 
-   menuBTEsquerda.onmouseover = function() {
+   document.getElementById("menuBTEsquerda").onmouseover = function() {
      document.getElementById('menuBTEsquerda').style.backgroundImage = "url('img/Vicoustic_botoes-press-ing_0000_Layer-1.png')";
    }
 
-   menuBTEsquerda.onmouseout = function() {
+   document.getElementById("menuBTEsquerda").onmouseout = function() {
      document.getElementById('menuBTEsquerda').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0000_Layer-1.png')";
    }
 
-  var menuBTCentro = document.createElement("div");
-  menuBTCentro.id = "menuBTCentro";
-  menuBTCentro.style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0001_Layer-2.png')";
-  menuBTCentro.style.width = "168px";
-  menuBTCentro.style.height = "53px";
-  menuBTCentro.style.float = "left";
-  menuBTCentro.style.cursor = "pointer";
-  btnDiv.appendChild(menuBTCentro);
-  menuBTCentro.onclick = function() {
+   /*------------------------------------------*/
+
+  document.getElementById("menuBTCentro").onclick = function() {
     document.getElementById('menuEsquerda').style.display = "block";
     document.getElementById('trianguloImgCentro').style.display = "block";
     document.getElementById('trianguloImgEsquerda').style.display = "none";
     document.getElementById('trianguloImgDireita').style.display = "none";
   }
 
-  menuBTCentro.onmouseover = function() {
+  document.getElementById("menuBTCentro").onmouseover = function() {
     document.getElementById('menuBTCentro').style.backgroundImage = "url('img/Vicoustic_botoes-press-ing_0001_Layer-2.png')";
   }
 
-  menuBTCentro.onmouseout = function() {
+  document.getElementById("menuBTCentro").onmouseout = function() {
     document.getElementById('menuBTCentro').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0001_Layer-2.png')";
   }
 
-  var menuBTDireita = document.createElement("div");
-  menuBTDireita.id = "menuBTDireita";
-  menuBTDireita.style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0002_Layer-0.png')";
-  menuBTDireita.style.width = "169px";
-  menuBTDireita.style.height = "53px";
-  menuBTDireita.style.float = "left";
-  menuBTDireita.style.cursor = "pointer";
-  btnDiv.appendChild(menuBTDireita);
-  menuBTDireita.onclick = function() {
+  /*------------------------------------------*/
+
+  document.getElementById("menuBTDireita").onclick = function() {
     document.getElementById('menuEsquerda').style.display = "block";
     document.getElementById('trianguloImgDireita').style.display = "block";
     document.getElementById('trianguloImgCentro').style.display = "none";
     document.getElementById('trianguloImgEsquerda').style.display = "none";
   }
 
-  menuBTDireita.onmouseover = function() {
+  document.getElementById("menuBTDireita").onmouseover = function() {
     document.getElementById('menuBTDireita').style.backgroundImage = "url('img/Vicoustic_botoes-press-ing_0002_Layer-0.png')";
   }
 
-  menuBTDireita.onmouseout = function() {
+  document.getElementById("menuBTDireita").onmouseout = function() {
     document.getElementById('menuBTDireita').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0002_Layer-0.png')";
   }
 
+  /*------------------------------------------*/
 
-  var menuEsquerda = document.createElement("div");
-  menuEsquerda.id = "menuEsquerda";
-  menuEsquerda.style.margin = "0 auto";
-  menuEsquerda.style.width = "800px";
-  menuEsquerda.style.height = "188px";
-  menuEsquerda.style.bottom = "245px";
-  menuEsquerda.style.position = "relative";
-  menuEsquerda.style.textAlign = "center";
-  menuEsquerda.style.display = "none";
-
-  var esquerda = document.createElement("div");
-  esquerda.id = "esquerda";
-  esquerda.style.backgroundColor = "#eeeeee";
-  esquerda.style.width = "100%";
-  esquerda.style.height = "175px";
-  menuEsquerda.appendChild(esquerda);
-
-  var closeBt = document.createElement("div");
-  closeBt.style.backgroundImage = "url('img/Close_button.png')";
-  closeBt.id = "closeBt";;
-  closeBt.style.backgroundColor = "";
-  closeBt.style.width = "26px";
-  closeBt.style.height = "26px";
-  closeBt.style.float = "right";
-  closeBt.style.marginRight = "-13px";
-  closeBt.style.marginTop = "-188px";
-  closeBt.style.cursor = "pointer";
-  menuEsquerda.appendChild(closeBt);
-  closeBt.onclick = function() {
+  document.getElementById("closeBt").onclick = function() {
     document.getElementById('menuEsquerda').style.display = "none";
   }
 
-  var nameBar = document.createElement("div");
-  nameBar.id = "nameBar";
-  nameBar.style.backgroundColor = "#ffa023";
-  nameBar.style.width = "100%";
-  nameBar.style.height = "30px";
-  nameBar.style.boxShadow = "0px 2px 5px #b8b8b8";
-  esquerda.appendChild(nameBar);
-
-  var name1 = document.createElement("p");
-  name1.id = "name1";
-  name1.innerHTML = "MODELS";
-  name1.style.fontFamily = "osr";
-  name1.style.color = "#FFF";
-  name1.style.paddingTop = "4px";
-  name1.style.width = "160px";
-  name1.style.height = "100%";
-  name1.style.margin = "0";
-  name1.style.display = "inline-block";
-  nameBar.appendChild(name1);
-
-  var name2 = document.createElement("p");
-  name2.id = "name2";
-  name2.innerHTML = "BACKGROUND";
-  name2.style.fontFamily = "osr";
-  name2.style.color = "#FFF";
-  name2.style.width = "140px";
-  name2.style.height = "100%";
-  name2.style.margin = "0";
-  name2.style.display = "inline-block";
-  nameBar.appendChild(name2);
-
-  var name3 = document.createElement("p");
-  name3.id = "name3";
-  name3.innerHTML = "COLOR";
-  name3.style.fontFamily = "osr";
-  name3.style.color = "#FFF";
-  name3.style.width = "320px";
-  name3.style.height = "100%";
-  name3.style.margin = "0";
-  name3.style.display = "inline-block";
-  nameBar.appendChild(name3);
-
-  var name4 = document.createElement("p");
-  name4.id = "name4";
-  name4.innerHTML = "FAVOURITES";
-  name4.style.fontFamily = "osr";
-  name4.style.color = "#FFF";
-  name4.style.width = "160px";
-  name4.style.height = "100%";
-  name4.style.margin = "0";
-  name4.style.display = "inline-block";
-  nameBar.appendChild(name4);
-
-  var modelsBar = document.createElement("div");
-  modelsBar.id = "modelsBar";
-  modelsBar.style.borderRight = "groove 1px #969696";
-  modelsBar.style.width = "160px";
-  modelsBar.style.height = "125px";
-  modelsBar.style.marginTop = "10px";
-  modelsBar.style.float = "left";
-  esquerda.appendChild(modelsBar);
-
-  var models1 = document.createElement("div");
-  models1.id = "models1";
-  models1.style.width = "100%";
-  models1.style.height = "38px";
-  models1.style.cursor = "pointer";
-  modelsBar.appendChild(models1);
-  models1.onclick = function() {
-
-
+  document.getElementById("models1").onclick = function() {
   }
 
-  var models1Img = document.createElement("img");
-  models1Img.id = "models1Img";
-  models1Img.setAttribute("src", "img/Diamond_icon.png");
-  models1Img.style.height = "100%";
-  models1Img.style.float = "left";
-  models1Img.style.marginLeft = "10px";
-  models1.appendChild(models1Img);
-
-  var models1Name = document.createElement("p");
-  models1Name.id = "models1Name";
-  models1Name.innerHTML = "Diamond";
-  models1Name.style.width = "90px";
-  models1Name.style.float = "right";
-  models1Name.style.fontFamily = "osl";
-  models1Name.style.textAlign = "left";
-  models1Name.style.color = "#e46100";
-  models1Name.style.height = "30px";
-  models1Name.style.margin = "0";
-  models1Name.style.paddingTop = "10px";
-  models1.appendChild(models1Name);
-
-  var models2 = document.createElement("div");
-  models2.id = "models2";
-  models2.style.width = "100%";
-  models2.style.height = "38px";
-  models2.style.marginTop = "3px";
-  models2.style.cursor = "pointer";
-  modelsBar.appendChild(models2);
-  models2.onclick = function() {
-
-
+  document.getElementById("models2").onclick = function() {
   }
 
-
-  var models2Img = document.createElement("img");
-  models2Img.id = "models2Img";
-  models2Img.setAttribute("src", "img/Stylo_icon.png");
-  models2Img.style.height = "100%";
-  models2Img.style.float = "left";
-  models2Img.style.marginLeft = "10px";
-  models2.appendChild(models2Img);
-
-  var models2Name = document.createElement("p");
-  models2Name.id = "models2Name";
-  models2Name.innerHTML = "Stylo";
-  models2Name.style.width = "90px";
-  models2Name.style.float = "right";
-  models2Name.style.fontFamily = "osl";
-  models2Name.style.textAlign = "left";
-  models2Name.style.color = "#e46100";
-  models2Name.style.height = "30px";
-  models2Name.style.margin = "0";
-  models2Name.style.paddingTop = "10px";
-  models2.appendChild(models2Name);
-
-  var models3 = document.createElement("div");
-  models3.id = "models3";
-  models3.style.width = "100%";
-  models3.style.height = "38px";
-  models3.style.marginTop = "3px";
-  models3.style.cursor = "pointer";
-  modelsBar.appendChild(models3);
-  models3.onclick = function() {
-
-
+  document.getElementById("models3").onclick = function() {
   }
 
-
-  var models3Img = document.createElement("img");
-  models3Img.id = "models3Img";
-  models3Img.setAttribute("src", "img/Symmetric_icon.png");
-  models3Img.style.height = "100%";
-  models3Img.style.float = "left";
-  models3Img.style.marginLeft = "10px";
-  models3.appendChild(models3Img);
-
-  var models3Name = document.createElement("p");
-  models3Name.id = "models3Name";
-  models3Name.innerHTML = "Symmetric";
-  models3Name.style.width = "90px";
-  models3Name.style.float = "right";
-  models3Name.style.fontFamily = "osl";
-  models3Name.style.textAlign = "left";
-  models3Name.style.color = "#e46100";
-  models3Name.style.height = "30px";
-  models3Name.style.margin = "0";
-  models3Name.style.paddingTop = "10px";
-  models3.appendChild(models3Name);
-
-  var backgroundBar = document.createElement("div");
-  backgroundBar.id = "backgroundBar";
-  backgroundBar.style.borderRight = "groove 1px #969696";
-  backgroundBar.style.width = "160px";
-  backgroundBar.style.height = "125px";
-  backgroundBar.style.marginTop = "10px";
-  backgroundBar.style.float = "left";
-  esquerda.appendChild(backgroundBar);
-
-  var colorBar = document.createElement("div");
-  colorBar.id = "colorBar";
-  colorBar.style.borderRight = "groove 1px #969696";
-  colorBar.style.width = "320px";
-  colorBar.style.height = "125px";
-  colorBar.style.marginTop = "10px";
-  colorBar.style.float = "left";
-  esquerda.appendChild(colorBar);
-
-  var favBar = document.createElement("div");
-  favBar.id = "favBar";
-  favBar.style.width = "155px";
-  favBar.style.height = "125px";
-  favBar.style.marginTop = "10px";
-  favBar.style.float = "left";
-  esquerda.appendChild(favBar);
-
-
-  var trianguloImgEsquerda = document.createElement("div");
-  trianguloImgEsquerda.id = "trianguloImgEsquerda";
-  trianguloImgEsquerda.style.backgroundImage = "url('img/ponteiro.png')";
-  trianguloImgEsquerda.style.width = "15px";
-  trianguloImgEsquerda.style.height = "8px";
-  trianguloImgEsquerda.style.marginTop = "-1px";
-  trianguloImgEsquerda.style.float = "left";
-  trianguloImgEsquerda.style.marginLeft = "225px";
-  trianguloImgEsquerda.style.display = "none";
-  menuEsquerda.appendChild(trianguloImgEsquerda);
-
-  var trianguloImgCentro = document.createElement("div");
-  trianguloImgCentro.id = "trianguloImgCentro";
-  trianguloImgCentro.style.backgroundImage = "url('img/ponteiro.png')";
-  trianguloImgCentro.style.width = "15px";
-  trianguloImgCentro.style.height = "8px";
-  trianguloImgCentro.style.marginTop = "-1px";
-  trianguloImgCentro.style.float = "left";
-  trianguloImgCentro.style.marginLeft = "390px";
-  trianguloImgCentro.style.display = "none";
-  menuEsquerda.appendChild(trianguloImgCentro);
-
-  var trianguloImgDireita = document.createElement("div");
-  trianguloImgDireita.id = "trianguloImgDireita";
-  trianguloImgDireita.style.backgroundImage = "url('img/ponteiro.png')";
-  trianguloImgDireita.style.width = "15px";
-  trianguloImgDireita.style.height = "8px";
-  trianguloImgDireita.style.marginTop = "-1px";
-  trianguloImgDireita.style.float = "right";
-  trianguloImgDireita.style.marginRight = "225px";
-  trianguloImgDireita.style.display = "none";
-  menuEsquerda.appendChild(trianguloImgDireita);
-
-
-
-  menuDiv.appendChild(btnDiv);
-  document.body.appendChild(menuDiv);
-
-  document.body.appendChild(menuEsquerda);
 
   $('#menuDiv').bind('mouseenter' ,"*", function(e){
     mouseIsOnMenu = true;
