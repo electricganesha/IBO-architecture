@@ -44,7 +44,7 @@ jQuery._farbtastic = function (container, callback) {
   // Dimensions
   fb.radius = 43;
   fb.square = 100;
-  fb.sliderHeight = 200;
+  fb.sliderHeight = 95;
   fb.satPos = 250;
   fb.width = 95;
 
@@ -263,14 +263,14 @@ jQuery._farbtastic = function (container, callback) {
     });
 
       $('.markerLum', e).css({
-        left: '245px',
-        top: Math.round(fb.sliderHeight * (.43 - fb.hsl[1]) + fb.width / 2) + 'px'
+        left: '113px',
+        top: Math.round(fb.sliderHeight * (.52 - fb.hsl[1]) + fb.width / 2) + 'px'
       });
 
 
       $('.markerSat', e).css({
-        left: '113px',
-        top: Math.round(fb.sliderHeight * (.43 - fb.hsl[2]) + fb.width / 2) + 'px'
+        left: '143px',
+        top: Math.round(fb.sliderHeight * (.52 - fb.hsl[2]) + fb.width / 2) + 'px'
       });
 
     if( fb.lumDrag || fb.circleDrag || mouseUp)

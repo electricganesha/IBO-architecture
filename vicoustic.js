@@ -227,8 +227,46 @@ THREE.DefaultLoadingManager.onError = function () {
   ('there has been an error');
 };
 
-function menu(){
+function updatebuttonsplaca(id) {
+  switch (id) {
+    case 1:
+      if(document.getElementById('models1Del').src.indexOf("Botao_apagar") > -1)
+      {
+        console.log("Botao_mais");
+        document.getElementById('models1Del').src = "img/Botao_mais.png";
+      }else{
+        console.log("Botao_apagar");
+        document.getElementById('models1Del').src = "img/Botao_apagar.png";
+      }
+      document.getElementById('models2Del').src = "img/Botao_mais.png";
+      document.getElementById('models3Del').src = "img/Botao_mais.png";
+      break;
+    case 2:
+      if(document.getElementById('models2Del').src.indexOf("Botao_apagar") > -1)
+      {
+        document.getElementById('models2Del').src = "img/Botao_mais.png";
+      }else{
+        document.getElementById('models2Del').src = "img/Botao_apagar.png";
+      }
+      document.getElementById('models1Del').src = "img/Botao_mais.png";
+      document.getElementById('models3Del').src = "img/Botao_mais.png";
+      break;
+    case 3:
+      if(document.getElementById('models3Del').src.indexOf("Botao_apagar") > -1)
+      {
+        document.getElementById('models3Del').src = "img/Botao_mais.png";
+      }else{
+        document.getElementById('models3Del').src = "img/Botao_apagar.png";
+      }
+      document.getElementById('models2Del').src = "img/Botao_mais.png";
+      document.getElementById('models1Del').src = "img/Botao_mais.png";
+      break;
+  }
+}
 
+function menu(){
+  var primeira = true;
+  var selected;
    document.getElementById("menuBTEsquerda").onclick = function() {
      document.getElementById('menuEsquerda').style.display = "block";
      document.getElementById('trianguloImgEsquerda').style.display = "block";
@@ -243,6 +281,22 @@ function menu(){
    document.getElementById("menuBTEsquerda").onmouseout = function() {
      document.getElementById('menuBTEsquerda').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0000_Layer-1.png')";
    }
+
+   /*------------------------------------------*/
+
+   document.getElementById("models1Del").onclick = function() {
+     updatebuttonsplaca(1);
+   }
+
+   document.getElementById("models2Del").onclick = function() {
+     updatebuttonsplaca(2);
+   }
+
+   document.getElementById("models3Del").onclick = function() {
+     updatebuttonsplaca(3);
+   }
+
+
 
    /*------------------------------------------*/
 

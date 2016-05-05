@@ -62,8 +62,8 @@ body
   left:27px;
   width: 45px;
   height: 45px;
-  border: 1px black solid;
   border-radius:100px;
+  box-shadow: inset 0px 1px 1px 1px #d9d9da;
 }
 
 .shadowColorPicker {
@@ -140,7 +140,6 @@ body
 
 .farbtastic .markerSat {
   position:absolute;
-  border: 1px solid green;
   width: 24px;
   height: 24px;
   overflow: hidden;
@@ -150,7 +149,6 @@ body
 
 .farbtastic .markerLum {
   position:absolute;
-  border: 1px solid red;
   width: 24px;
   height: 24px;
   overflow: hidden;
@@ -163,6 +161,16 @@ body
   float:right;
   position:relative;
   margin-top:7%;
+  text-align: right;
+  font-family: osl;
+  color: #e46100;
+  top:-14px;
+}
+
+input[type="text"]
+{
+  width: 55px;
+  margin-bottom: 4px;
 }
 
 .buttonPlus
@@ -180,22 +188,27 @@ body
 
 .buttonPlusFavContainer
 {
-  background-color:#969696;
+  background-color:#bfbfbf;
+  margin:auto;
   position:relative;
-  top:2%;
-  left:56%;
-  width:120px;
-  height:36px;
-  border: 1px white solid;
+  width:110px;
+  height:25px;
   border-radius:50px;
-  box-shadow: 1px 1px 1px 1px #000000;
+  box-shadow: 0px 1px #707070;
+  cursor: pointer;
+  padding-top: 6px;
+}
+
+.buttonPlusFavContainer:hover
+{
+  background-color:#ffa023;
 }
 
 .buttonPlusFav
 {
-  margin-left:35%;
-  width: 36px;
-  height: 36px;
+  margin-left:42%;
+  width: 21px;
+  height: 21px;
   overflow: hidden;
   z-index:3;
   background: url(../img/buttonPlus.png) no-repeat;
@@ -203,12 +216,11 @@ body
 
 .favButtonMenu
 {
-  top:10%;
-  left:50%;
+  width: 200px;
+  margin-left: -37px;
+  margin-top: -5px;
   position:relative;
-  width:20%;
-  float:right;
-  display:inline-block;
+
 }
 
 .favButtonMenu ul
@@ -219,12 +231,12 @@ body
 
 .favButtonMenu ul li
 {
-  margin-left:5%;
-  margin-bottom:5%;
+  margin-left:10px;
+  margin-bottom:10px;
   float:left;
-  height:48px;
-  width:48px;
+  height:35px;
+  width:35px;
   border: 1px white solid;
   border-radius:50px;
-  box-shadow: inset 1px 1px 1px 1px #d9d9da;
+  box-shadow: inset 0px 2px 1px 1px #d9d9da;
 }
