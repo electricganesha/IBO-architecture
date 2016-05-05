@@ -1,0 +1,230 @@
+/**
+* Farbtastic Color Picker 1.2
+* © 2008 Steven Wittens
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+body
+{
+  background-color:#eeeeee;
+}
+
+.R-item
+{
+  left:35%;
+}
+
+.G-item
+{
+  left:35%;
+  top:6%;
+}
+
+.B-item
+{
+  left:35%;
+  top:11%;
+}
+
+.form-item
+{
+  left:35%;
+  top:16%;
+}
+
+.farbtastic {
+  left:5%;
+  position: relative;
+}
+.farbtastic * {
+  position: relative;
+  cursor: crosshair;
+}
+.farbtastic, .farbtastic .wheel {
+  width: 101px;
+  height: 101px;
+}
+.farbtastic .color, .farbtastic .overlay {
+  top:39px;
+  left:27px;
+  width: 45px;
+  height: 45px;
+  border: 1px black solid;
+  border-radius:100px;
+}
+
+.shadowColorPicker {
+  top:45px;
+  left:20px;
+  width: 45px;
+  height: 45px;
+  border: 1px black solid;
+  border-radius:100px;
+  color: linear-gradient(rgba(127, 127, 127, 0), rgba(127, 127, 127, 1));
+}
+
+.farbtastic .wheel {
+  background: url(../img/wheel.png) no-repeat;
+  bottom:35px;
+  width: 100px;
+  height: 100px;
+  z-index:1;
+}
+
+.farbtastic .sliderSat {
+  position:absolute;
+  /*background: url(maskSliderSat.png) no-repeat;*/
+  background-color:#ffffff;
+  top:10px;
+  left: 120px;
+  width: 10px;
+  height: 100px;
+  border: 1px white solid;
+  border-radius:50px;
+  box-shadow: 1px 1px 1px 1px #d9d9da;
+  z-index:1;
+}
+
+.farbtastic .sliderSatOverlay {
+  position:absolute;
+  background: linear-gradient(rgba(127, 127, 127, 0), rgba(127, 127, 127, 1)); /* Standard syntax */
+  top:10px;
+  left: 120px;
+  width: 10px;
+  height: 100px;
+  border: 1px white solid;
+  border-radius:50px;
+  z-index:1;
+}
+
+.farbtastic .sliderLum {
+  position:absolute;
+  background: url(../img/maskSliderLum.png) no-repeat;
+  background-color:#ffffff;
+  left: 150px;
+  top:11px;
+  width: 10px;
+  height: 100px;
+  border: 1px white solid;
+  border-radius:50px;
+  box-shadow: 1px 1px 1px 1px #d9d9da;
+  z-index:1;
+}
+
+.farbtastic .overlay {
+  background: url(../img/mask.png) no-repeat;
+}
+
+.farbtastic .marker {
+  position:absolute;
+  width: 24px;
+  height: 24px;
+  margin: 3px 0 0 -9px;
+  overflow: hidden;
+  z-index:3;
+  background: url(../img/marker.png) no-repeat;
+}
+
+.farbtastic .markerSat {
+  position:absolute;
+  border: 1px solid green;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  z-index:3;
+  background: url(../img/markerSlider.png) no-repeat;
+}
+
+.farbtastic .markerLum {
+  position:absolute;
+  border: 1px solid red;
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  z-index:3;
+  background: url(../img/markerSlider.png) no-repeat;
+}
+
+.inputContainer
+{
+  float:right;
+  position:relative;
+  margin-top:7%;
+}
+
+.buttonPlus
+{
+  position:relative;;
+  /*float:left;
+  top:18%;
+  left:6.9%;*/
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  z-index:3;
+  background: url(../img/buttonPlus.png) no-repeat;
+}
+
+.buttonPlusFavContainer
+{
+  background-color:#969696;
+  position:relative;
+  top:2%;
+  left:56%;
+  width:120px;
+  height:36px;
+  border: 1px white solid;
+  border-radius:50px;
+  box-shadow: 1px 1px 1px 1px #000000;
+}
+
+.buttonPlusFav
+{
+  margin-left:35%;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  z-index:3;
+  background: url(../img/buttonPlus.png) no-repeat;
+}
+
+.favButtonMenu
+{
+  top:10%;
+  left:50%;
+  position:relative;
+  width:20%;
+  float:right;
+  display:inline-block;
+}
+
+.favButtonMenu ul
+{
+  height:10%;
+  list-style:none;
+}
+
+.favButtonMenu ul li
+{
+  margin-left:5%;
+  margin-bottom:5%;
+  float:left;
+  height:48px;
+  width:48px;
+  border: 1px white solid;
+  border-radius:50px;
+  box-shadow: inset 1px 1px 1px 1px #d9d9da;
+}
