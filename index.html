@@ -45,7 +45,7 @@
         }
 
         #vicousticLogo{
-          margin-left: 150px;
+          margin-left: 5%;
           margin-top: 5px;
           float: left;
         }
@@ -115,7 +115,7 @@
           font-family: osr;
           color: #FFF;
           padding-top: 4px;
-          width: 160px;
+          width: 186px;
           height: 100%;
           margin: 0;
           display: inline-block;
@@ -124,7 +124,7 @@
         #name2{
           font-family: osr;
           color: #FFF;
-          width: 140px;
+          width: 125px;
           height: 100%;
           margin: 0;
           display: inline-block;
@@ -133,7 +133,7 @@
         #name3{
           font-family: osr;
           color: #FFF;
-          width: 320px;
+          width: 307px;
           height: 100%;
           margin: 0;
           display: inline-block;
@@ -150,7 +150,7 @@
 
         #modelsBar{
           border-right:groove 1px #969696;
-          width: 160px;
+          width: 195px;
           height: 125px;
           margin-top: 10px;
           float: left;
@@ -159,13 +159,19 @@
         #models1{
           width: 100%;
           height: 38px;
-          cursor: pointer;
         }
 
         #models1Img{
           height: 100%;
           float: left;
           margin-left: 10px;
+        }
+
+        #models1Del{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
+          cursor: pointer;
         }
 
         #models1Name{
@@ -183,13 +189,19 @@
           width: 100%;
           height: 38px;
           margin-top: 3px;
-          cursor: pointer;
         }
 
         #models2Img{
           height: 100%;
           float: left;
           margin-left: 10px;
+        }
+
+        #models2Del{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
+          cursor: pointer;
         }
 
         #models2Name{
@@ -207,13 +219,19 @@
           width: 100%;
           height: 38px;
           margin-top: 3px;
-          cursor: pointer;
         }
 
         #models3Img{
           height: 100%;
           float: left;
           margin-left: 10px;
+        }
+
+        #models3Del{
+          height: 100%;
+          float: left;
+          margin-left: 10px;
+          cursor: pointer;
         }
 
         #models3Name{
@@ -229,14 +247,14 @@
 
         #backgroundBar{
           border-right: groove 1px #969696;
-          width: 160px;
+          width: 120px;
           height: 125px;
           margin-top: 10px;
           float: left;
         }
         #colorBar{
           border-right: groove 1px #969696;
-          width: 320px;
+          width: 325px;
           height: 125px;
           margin-top: 10px;
           float: left;
@@ -306,30 +324,42 @@
         </div>
         <div id="modelsBar">
           <div id="models1">
+            <img id="models1Del" src="img/Botao_mais.png"></img>
             <img id="models1Img" src="img/Diamond_icon.png"></img>
             <p id="models1Name">Diamond</p>
           </div>
           <div id="models2">
+            <img id="models2Del" src="img/Botao_mais.png"></img>
             <img id="models2Img" src="img/Stylo_icon.png"></img>
             <p id="models2Name">Stylo</p>
           </div>
           <div id="models3">
+            <img id="models3Del" src="img/Botao_mais.png"></img>
             <img id="models3Img" src="img/Symmetric_icon.png"></img>
             <p id="models3Name">Symmetric</p>
           </div>
         </div>
         <div id="backgroundBar">
+          <div class="favButtonMenu" style="width: 100%; margin-left: -8px;
+          margin-top: 0px;">
+            <ul>
+              <li id="backgroundButton1" onclick="" style="margin-bottom:20px; cursor: pointer; background-color: #FFF"></li>
+              <br>
+            </ul>
+            <ul>
+              <li id="backgroundButton1" onclick="" style="background-color: #000; cursor: pointer;"></li>
+              <br>
+            </ul>
+          </div>
         </div>
         <div id="colorBar">
-          <form action="" style="width: 400px;">
+          <form action="" style="width: 310px;">
             <div class="inputContainer">
-              <div class="R-item"><label for="colorR">R:</label><input type="text" min="0" max="255" id="colorR" name="colorR" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
-              <div class="G-item"><label for="colorG">G:</label><input type="text" min="0" max="255" id="colorG" name="colorG" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
-              <div class="B-item"><label for="colorB">B:</label><input type="text" min="0" max="255" id="colorB" name="colorB" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
-              <div class="form-item">HEX : <input type="text" id="hex" name="color" value="#ffa023" onchange="updateColorsHEX()"/></div>
+              <div class="R-item"><label for="colorR">R: </label><input type="text" min="0" max="255" id="colorR" name="colorR" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="G-item"><label for="colorG">G: </label><input type="text" min="0" max="255" id="colorG" name="colorG" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="B-item"><label for="colorB">B: </label><input type="text" min="0" max="255" id="colorB" name="colorB" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="form-item">HEX: <input type="text" id="hex" name="color" value="#ffa023" onchange="updateColorsHEX()"/></div>
             </div>
-
-
             <div id="picker">
               <div class="buttonPlus" onclick="clickMainPlus()"> </div>
               <div class="shadowColorPicker"> </div>
@@ -338,7 +368,7 @@
         </div>
         <div id="favBar">
           <div class="buttonPlusFavContainer" onclick="clickMainPlus()">
-            <div class="buttonPlusFav"> </div>
+            <div class="buttonPlusFav"></div>
           </div>
           <div class="favButtonMenu">
             <ul>
