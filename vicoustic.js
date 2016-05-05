@@ -283,7 +283,6 @@ function menu(){
      document.getElementById('menuEsquerda').style.display = "block";
      document.getElementById('trianguloImgEsquerda').style.display = "block";
      document.getElementById('trianguloImgCentro').style.display = "none";
-     document.getElementById('trianguloImgDireita').style.display = "none";
    }
 
    document.getElementById("menuBTEsquerda").onmouseover = function() {
@@ -317,7 +316,6 @@ function menu(){
     document.getElementById('menuEsquerda').style.display = "block";
     document.getElementById('trianguloImgCentro').style.display = "block";
     document.getElementById('trianguloImgEsquerda').style.display = "none";
-    document.getElementById('trianguloImgDireita').style.display = "none";
   }
 
   document.getElementById("menuBTCentro").onmouseover = function() {
@@ -326,24 +324,6 @@ function menu(){
 
   document.getElementById("menuBTCentro").onmouseout = function() {
     document.getElementById('menuBTCentro').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0001_Layer-2.png')";
-  }
-
-  /*------------------------------------------*/
-
-  document.getElementById("menuBTDireita").onclick = function() {
-    placaSelected = 3;
-    document.getElementById('menuEsquerda').style.display = "block";
-    document.getElementById('trianguloImgDireita').style.display = "block";
-    document.getElementById('trianguloImgCentro').style.display = "none";
-    document.getElementById('trianguloImgEsquerda').style.display = "none";
-  }
-
-  document.getElementById("menuBTDireita").onmouseover = function() {
-    document.getElementById('menuBTDireita').style.backgroundImage = "url('img/Vicoustic_botoes-press-ing_0002_Layer-0.png')";
-  }
-
-  document.getElementById("menuBTDireita").onmouseout = function() {
-    document.getElementById('menuBTDireita').style.backgroundImage = "url('img/Vicoustic_botoes-normal-ing_0002_Layer-0.png')";
   }
 
   /*------------------------------------------*/
@@ -1436,22 +1416,10 @@ function setupTweenOverview() {
   }).start();
 }
 
-function updateColorPlacaEsquerda(color) {
-  var colorHex = color.replace("#", "0x");
-  var selectedObject = mainScene.getObjectByName("placafrente");
-  selectedObject.material.color.setHex(colorHex);
-}
 
 function updateColorPlacaCentro(color) {
   var colorHex = color.replace("#", "0x");
   var selectedObject = mainScene.getObjectByName("placaCentroFrente");
-  selectedObject.material.color.setHex(colorHex);
-}
-
-function updateColorPlacaDireita(color) {
-  var colorHex = color.replace("#", "0x");
-
-  var selectedObject = mainScene.getObjectByName("placaDireitaFrente");
   selectedObject.material.color.setHex(colorHex);
 }
 
@@ -1771,13 +1739,13 @@ function removeAllPlacas()
             case(0):
             break;
             case(1):
-            updateColorPlacaEsquerda(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
+            updateColorPlacasLaterais(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
             break;
             case(2):
             updateColorPlacaCentro(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
             break;
             case(3):
-            updateColorPlacaDireita(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
+            updateColorPlacasLaterais(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
             break;
           }
 
