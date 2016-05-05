@@ -16,7 +16,7 @@
     "scale" : 1.000000,
 
     "materials": [	{
-	"DbgColor" : 15658734,
+	"DbgColor" : 15653734,
 	"DbgIndex" : 0,
 	"DbgName" : "None.001",
 	"colorAmbient" : [0.0, 0.0, 0.0],
