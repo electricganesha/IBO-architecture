@@ -283,6 +283,8 @@
   <body>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/colorpicker.js"></script>
+    <link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
     <div id="menuDiv">
       <img id="vicousticLogo" src="img/logo-vicoustic.png">
       <div id="btnDiv">
@@ -319,8 +321,37 @@
         <div id="backgroundBar">
         </div>
         <div id="colorBar">
+          <form action="" style="width: 400px;">
+            <div class="inputContainer">
+              <div class="R-item"><label for="colorR">R:</label><input type="text" min="0" max="255" id="colorR" name="colorR" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="G-item"><label for="colorG">G:</label><input type="text" min="0" max="255" id="colorG" name="colorG" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="B-item"><label for="colorB">B:</label><input type="text" min="0" max="255" id="colorB" name="colorB" class="colorwell" value="#ffa023" onchange="updateColorsRGB()"/></div>
+              <div class="form-item">HEX : <input type="text" id="hex" name="color" value="#ffa023" onchange="updateColorsHEX()"/></div>
+            </div>
+
+
+            <div id="picker">
+              <div class="buttonPlus" onclick="clickMainPlus()"> </div>
+              <div class="shadowColorPicker"> </div>
+            </div>
+          </form>
         </div>
         <div id="favBar">
+          <div class="buttonPlusFavContainer" onclick="clickMainPlus()">
+            <div class="buttonPlusFav"> </div>
+          </div>
+          <div class="favButtonMenu">
+            <ul>
+              <li id="favButton1" onclick="clickFavButton1()"></li>
+              <li id="favButton2" onclick="clickFavButton2()"></li>
+              <li id="favButton3" onclick="clickFavButton3()"></li>
+            </ul>
+            <ul>
+              <li id="favButton4" onclick="clickFavButton4()"></li>
+              <li id="favButton5" onclick="clickFavButton5()"></li>
+              <li id="favButton6" onclick="clickFavButton6()"></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div id="closeBt">
