@@ -56,9 +56,14 @@ $.ajax({
 
 var placaSelected = 0;
 
+var lastColorPlacasLaterais = 0xffa023;
+var lastColorPlacaCentral = 0xffa023;
+var lastBGPlacasLaterais = 0x000000;
+var lastBGPlacaCentral = 0x000000;;
+
 var textureLoader = new THREE.TextureLoader();
 
-var texturaCadeiraHighlight = textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_amarelo_small.jpg');
+var texturaCadeiraHighlight = textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Diffuse_cinzento_small.jpg');
 
 var texturaCadeiraNormalMap = textureLoader.load('models/Cinema_Motta/Cadeira_Nova/BaseCadeira_Normals_small.jpg');
 
@@ -230,13 +235,18 @@ THREE.DefaultLoadingManager.onError = function () {
 };
 
 function updatebuttonsplaca(id) {
+
   switch (id) {
     case 1:
       if(document.getElementById('models1Del').src.indexOf("Botao_apagar") > -1)
       {
+        saveLastColors();
         removeAllPlacas();
         document.getElementById('models1Del').src = "img/Botao_mais.png";
       }else{
+        saveLastColors();
+        removeAllPlacas();
+        loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models1Del').src = "img/Botao_apagar.png";
       }
       document.getElementById('models2Del').src = "img/Botao_mais.png";
@@ -245,9 +255,13 @@ function updatebuttonsplaca(id) {
     case 2:
       if(document.getElementById('models2Del').src.indexOf("Botao_apagar") > -1)
       {
+        saveLastColors();
         removeAllPlacas();
         document.getElementById('models2Del').src = "img/Botao_mais.png";
       }else{
+        saveLastColors();
+        removeAllPlacas();
+        loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models2Del').src = "img/Botao_apagar.png";
       }
       document.getElementById('models1Del').src = "img/Botao_mais.png";
@@ -256,15 +270,38 @@ function updatebuttonsplaca(id) {
     case 3:
       if(document.getElementById('models3Del').src.indexOf("Botao_apagar") > -1)
       {
+        saveLastColors();
         removeAllPlacas();
         document.getElementById('models3Del').src = "img/Botao_mais.png";
       }else{
+        saveLastColors();
+        removeAllPlacas();
+        loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models3Del').src = "img/Botao_apagar.png";
       }
       document.getElementById('models2Del').src = "img/Botao_mais.png";
       document.getElementById('models1Del').src = "img/Botao_mais.png";
       break;
   }
+}
+
+function saveLastColors()
+{
+  var lateral = mainScene.getObjectByName("placafrente");
+  if(lateral != undefined)
+    lastColorPlacasLaterais = lateral.material.color;
+
+  var central = mainScene.getObjectByName("placaCentroFrente");
+  if(central != undefined)
+    lastColorPlacaCentral = central.material.color;
+
+  var bglateral = mainScene.getObjectByName("placatras");
+    if(bglateral != undefined)
+  lastBGPlacasLaterais = bglateral.material.color;
+
+  var bgcentral = mainScene.getObjectByName("placaCentroTras");
+    if(bgcentral != undefined)
+  lastBGPlacaCentral= bgcentral.material.color;
 }
 
 function menu(){
@@ -575,123 +612,11 @@ function loadScene() {
 function loadSala() {
   var loaderJSON = new THREE.JSONLoader();
 
-  loaderJSON.load( "models/Cinema_Motta/placafrente.js", function( geometry,material ) {
-
-    material = new THREE.MeshBasicMaterial({
-      color:0x000000,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.name="placatras";
-    mainScene.add(testePlacas);
-  });
-
-  loaderJSON.load( "models/Cinema_Motta/placatras.js", function( geometry,material ) {
-
-
-    texturaAlpha = textureLoader.load('models/organic.jpg');
-
-    texturaAlpha.wrapS = THREE.RepeatWrapping;
-    texturaAlpha.wrapT = THREE.RepeatWrapping;
-    texturaAlpha.repeat.set( 4, 8 );
-
-    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
-
-    material = new THREE.MeshBasicMaterial({
-      transparent:true,
-      opacity:0.8,
-      alphaMap:texturaAlpha,
-      normalMap:texturaNormal,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.name="placafrente";
-    mainScene.add(testePlacas);
-  });
-
-  loaderJSON.load( "models/Cinema_Motta/placaDireitaFrente.js", function( geometry,material ) {
-
-    material = new THREE.MeshBasicMaterial({
-      color:0x000000,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.name="placaDireitaTras";
-    mainScene.add(testePlacas);
-  });
-
-  loaderJSON.load( "models/Cinema_Motta/placaDireitaTras.js", function( geometry,material ) {
-
-
-    texturaAlpha = textureLoader.load('models/organic.jpg');
-
-    texturaAlpha.wrapS = THREE.RepeatWrapping;
-    texturaAlpha.wrapT = THREE.RepeatWrapping;
-    texturaAlpha.repeat.set( 4, 8 );
-
-    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
-
-    material = new THREE.MeshBasicMaterial({
-      transparent:true,
-      opacity:0.8,
-      alphaMap:texturaAlpha,
-      normalMap:texturaNormal,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.name="placaDireitaFrente";
-    mainScene.add(testePlacas);
-  });
-
-  loaderJSON.load( "models/Cinema_Motta/placaCentroTras.js", function( geometry,material ) {
-
-    material = new THREE.MeshBasicMaterial({
-      color:0x000000,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.position.x = testePlacas.position.x-0.7;
-    testePlacas.position.y = testePlacas.position.y+0.7;
-    testePlacas.name="placaCentroTras";
-    mainScene.add(testePlacas);
-  });
-
-  loaderJSON.load( "models/Cinema_Motta/placaCentroFrente.js", function( geometry,material ) {
-
-
-    texturaAlpha = textureLoader.load('models/organic.jpg');
-
-    texturaAlpha.wrapS = THREE.RepeatWrapping;
-    texturaAlpha.wrapT = THREE.RepeatWrapping;
-    texturaAlpha.repeat.set( 4, 8 );
-
-    texturaNormal = textureLoader.load('models/chesterfield-normal.png');
-
-    material = new THREE.MeshBasicMaterial({
-      transparent:true,
-      opacity:0.8,
-      alphaMap:texturaAlpha,
-      normalMap:texturaNormal,
-    });
-
-    material.combine = THREE.MixOperation;
-
-    testePlacas = new THREE.Mesh(geometry,material);
-    testePlacas.position.x = testePlacas.position.x-0.7;
-    testePlacas.position.y = testePlacas.position.y+0.7;
-    testePlacas.name="placaCentroFrente";
-    mainScene.add(testePlacas);
-  });
+  placaSelected = 1;
+  loadPlacas(0xffa023,0x000000,0xffa023,0x000000);
+  placaSelected = 2;
+  loadPlacas(0xffa023,0x000000,0xffa023,0x000000);
+  placaSelected = 0;
 
   // load JSON model
   loaderJSON.load( "models/Cinema_Motta/Sala_Baked_03.js", function( geometry, materials ) {
@@ -759,6 +684,146 @@ function loadSala() {
     screenReferenceSphere.position.z = 0.009249939938009306;
 
   } );
+
+}
+
+function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
+{
+
+
+  switch (placaSelected) {
+    case 1:
+    loaderJSON.load( "models/Cinema_Motta/placafrente.js", function( geometry,material ) {
+
+      material = new THREE.MeshBasicMaterial({
+        color:0x000000,
+      });
+
+      material.combine = THREE.MixOperation;
+
+      testePlacas = new THREE.Mesh(geometry,material);
+      testePlacas.name="placatras";
+      mainScene.add(testePlacas);
+    });
+
+    loaderJSON.load( "models/Cinema_Motta/placatras.js", function( geometry,material ) {
+
+
+      texturaAlpha = textureLoader.load('models/organic.jpg');
+
+      texturaAlpha.wrapS = THREE.RepeatWrapping;
+      texturaAlpha.wrapT = THREE.RepeatWrapping;
+      texturaAlpha.repeat.set( 4, 8 );
+
+      texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+      material = new THREE.MeshBasicMaterial({
+        color:colorLaterais,
+        transparent:true,
+        opacity:0.8,
+        alphaMap:texturaAlpha,
+        normalMap:texturaNormal,
+      });
+
+      material.combine = THREE.MixOperation;
+
+      testePlacas = new THREE.Mesh(geometry,material);
+      testePlacas.name="placafrente";
+      mainScene.add(testePlacas);
+    });
+
+    loaderJSON.load( "models/Cinema_Motta/placaDireitaFrente.js", function( geometry,material ) {
+
+      material = new THREE.MeshBasicMaterial({
+        color:colorBGLaterais,
+      });
+
+      material.combine = THREE.MixOperation;
+
+      testePlacas = new THREE.Mesh(geometry,material);
+      testePlacas.name="placaDireitaTras";
+      mainScene.add(testePlacas);
+    });
+
+    loaderJSON.load( "models/Cinema_Motta/placaDireitaTras.js", function( geometry,material ) {
+
+
+      texturaAlpha = textureLoader.load('models/organic.jpg');
+
+      texturaAlpha.wrapS = THREE.RepeatWrapping;
+      texturaAlpha.wrapT = THREE.RepeatWrapping;
+      texturaAlpha.repeat.set( 4, 8 );
+
+      texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+      material = new THREE.MeshBasicMaterial({
+        color:colorLaterais,
+        transparent:true,
+        opacity:0.8,
+        alphaMap:texturaAlpha,
+        normalMap:texturaNormal,
+      });
+
+      material.combine = THREE.MixOperation;
+
+      testePlacas = new THREE.Mesh(geometry,material);
+      testePlacas.name="placaDireitaFrente";
+      mainScene.add(testePlacas);
+    });
+
+      break;
+      case 2:
+      loaderJSON.load( "models/Cinema_Motta/placaCentroTras.js", function( geometry,material ) {
+
+        material = new THREE.MeshBasicMaterial({
+          color:colorBGCentral,
+        });
+
+        material.combine = THREE.MixOperation;
+
+        testePlacas = new THREE.Mesh(geometry,material);
+        testePlacas.position.x = testePlacas.position.x-0.7;
+        testePlacas.position.y = testePlacas.position.y+0.7;
+        testePlacas.name="placaCentroTras";
+        mainScene.add(testePlacas);
+      });
+
+      loaderJSON.load( "models/Cinema_Motta/placaCentroFrente.js", function( geometry,material ) {
+
+
+        texturaAlpha = textureLoader.load('models/organic.jpg');
+
+        texturaAlpha.wrapS = THREE.RepeatWrapping;
+        texturaAlpha.wrapT = THREE.RepeatWrapping;
+        texturaAlpha.repeat.set( 4, 8 );
+
+        texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+
+        material = new THREE.MeshBasicMaterial({
+          color:colorCentral,
+          transparent:true,
+          opacity:0.8,
+          alphaMap:texturaAlpha,
+          normalMap:texturaNormal,
+        });
+
+        material.combine = THREE.MixOperation;
+
+        testePlacas = new THREE.Mesh(geometry,material);
+        testePlacas.position.x = testePlacas.position.x-0.7;
+        testePlacas.position.y = testePlacas.position.y+0.7;
+        testePlacas.name="placaCentroFrente";
+        mainScene.add(testePlacas);
+      });
+        break;
+    default:
+
+  }
+
+
+
+
+
 
 }
 
@@ -1417,61 +1482,61 @@ function setupTweenOverview() {
 }
 
 
-function updateColorPlacaCentro(color) {
-  var colorHex = color.replace("#", "0x");
-  var selectedObject = mainScene.getObjectByName("placaCentroFrente");
-  selectedObject.material.color.setHex(colorHex);
+function updateColorPlacaCentro(colorPlacaCentro) {
+  var colorHexCentro = colorPlacaCentro.replace("#", "0x");
+  var placaCentro = mainScene.getObjectByName("placaCentroFrente");
+  placaCentro.material.color.setHex(colorHexCentro);
 }
 
-function updateColorPlacasLaterais(color) {
-  var colorHex = color.replace("#", "0x");
+function updateColorPlacasLaterais(colorPlacaLateral) {
+  var colorHexLaterais = colorPlacaLateral.replace("#", "0x");
   var placaEsquerda = mainScene.getObjectByName("placafrente");
-  placaEsquerda.material.color.setHex(colorHex);
+  placaEsquerda.material.color.setHex(colorHexLaterais);
   var placaDireita = mainScene.getObjectByName("placaDireitaFrente");
-  placaDireita.material.color.setHex(colorHex);
+  placaDireita.material.color.setHex(colorHexLaterais);
 }
 
-function updatePlacaBackground(color) {
+function updatePlacaBackground(colorBG) {
 
   switch (placaSelected) {
     case(1):
-      console.log("mudei background placa esquerda");
       var placaEsquerda = mainScene.getObjectByName("placatras");
-      placaEsquerda.material.color.setHex(color);
+      placaEsquerda.material.color.setHex(colorBG);
+      var placaDireita = mainScene.getObjectByName("placaDireitaTras");
+      placaDireita.material.color.setHex(colorBG);
     break;
     case(2):
-      console.log("mudei background placa centro");
       var placaCentro = mainScene.getObjectByName("placaCentroTras");
-      placaCentro.material.color.setHex(color);
-    break;
-    case(3):
-      console.log("mudei background placa direita");
-      var placaDireita = mainScene.getObjectByName("placaDireitaTras");
-      placaDireita.material.color.setHex(color);
+      placaCentro.material.color.setHex(colorBG);
     break;
   }
-
-  var colorHex = color.replace("#", "0x");
-  var placaEsquerda = mainScene.getObjectByName("placafrente");
-  placaEsquerda.material.color.setHex(colorHex);
-  var placaDireita = mainScene.getObjectByName("placaDireitaFrente");
-  placaDireita.material.color.setHex(colorHex);
 }
 
 function removeAllPlacas()
 {
-  var selectedObject = mainScene.getObjectByName("placafrente");
-  mainScene.remove(selectedObject);
-  var selectedObject = mainScene.getObjectByName("placaCentroFrente");
-  mainScene.remove(selectedObject);
-  var selectedObject = mainScene.getObjectByName("placaDireitaFrente");
-  mainScene.remove(selectedObject);
-  var selectedObject = mainScene.getObjectByName("placatras");
-  mainScene.remove(selectedObject);
-  var selectedObject = mainScene.getObjectByName("placaCentroTras");
-  mainScene.remove(selectedObject);
-  var selectedObject = mainScene.getObjectByName("placaDireitaTras");
-  mainScene.remove(selectedObject);
+
+  switch (placaSelected) {
+    case 1:
+      var selectedObject = mainScene.getObjectByName("placafrente");
+      mainScene.remove(selectedObject);
+      var selectedObject = mainScene.getObjectByName("placaDireitaFrente");
+      mainScene.remove(selectedObject);
+      var selectedObject = mainScene.getObjectByName("placatras");
+      mainScene.remove(selectedObject);
+      var selectedObject = mainScene.getObjectByName("placaDireitaTras");
+      mainScene.remove(selectedObject);
+    break;
+    case 2:
+      var selectedObject = mainScene.getObjectByName("placaCentroFrente");
+      mainScene.remove(selectedObject);
+      var selectedObject = mainScene.getObjectByName("placaCentroTras");
+      mainScene.remove(selectedObject);
+    break;
+  }
+
+
+
+
 }
 
 
@@ -1736,16 +1801,11 @@ function removeAllPlacas()
 
           switch(placaSelected)
           {
-            case(0):
-            break;
             case(1):
             updateColorPlacasLaterais(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
             break;
             case(2):
             updateColorPlacaCentro(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
-            break;
-            case(3):
-            updateColorPlacasLaterais(fb.pack(fb.HSLToRGB([fb.hsl[0], sat, lum])));
             break;
           }
 
