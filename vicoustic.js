@@ -2010,6 +2010,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton1")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 
@@ -2017,6 +2018,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton2")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 
@@ -2024,6 +2026,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton3")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 
@@ -2031,6 +2034,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton4")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 
@@ -2038,6 +2042,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton5")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 
@@ -2045,6 +2050,7 @@ function removeAllPlacas()
       {
         rgb = $("#favButton6")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
         var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+        $.farbtastic('#picker').setColor('#000000');
         $.farbtastic('#picker').setColor(hexcolor);
       }
 

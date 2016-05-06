@@ -270,7 +270,7 @@ jQuery._farbtastic = function (container, callback) {
 
       $('.markerSat', e).css({
         left: '143px',
-        top: Math.round(fb.sliderHeight * (.52 - fb.hsl[2]) + fb.width / 2) + 'px'
+        top: Math.round(fb.sliderHeight * (.53 - fb.hsl[2]) + fb.width / 2) + 'px'
       });
 
     if( fb.lumDrag || fb.circleDrag || mouseUp)
@@ -454,8 +454,11 @@ function clickMainPlus()
 
 function clickFavButton1()
 {
+  console.log("entrei");
   rgb = $("#favButton1")[0].style.backgroundColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
   var hexcolor = "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+  $.farbtastic('#picker').setColor(0x000000);
+  console.log($.farbtastic('#picker').color);
   $.farbtastic('#picker').setColor(hexcolor);
 }
 
