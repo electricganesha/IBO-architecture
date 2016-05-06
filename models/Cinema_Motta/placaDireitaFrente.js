@@ -17,9 +17,8 @@
 
     "materials": [	{
 	"DbgColor" : 15658734,
-	"DbgIndex" : 0,
-	"DbgName" : "None.000",
-	"colorAmbient" : [0.0, 0.0, 0.0],
+	"DbgIndex" : 4,
+	"DbgName" : "matplacadireitafrente",
 	"colorDiffuse" : [0.8, 0.8, 0.8],
 	"colorSpecular" : [0.8, 0.8, 0.8],
 	"illumination" : 2,

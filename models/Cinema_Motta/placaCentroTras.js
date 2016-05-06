@@ -17,9 +17,8 @@
 
     "materials": [	{
 	"DbgColor" : 15628734,
-	"DbgIndex" : 0,
-	"DbgName" : "None.002",
-	"colorAmbient" : [0.0, 0.0, 0.0],
+	"DbgIndex" : 3,
+	"DbgName" : "matplacacentrotras",
 	"colorDiffuse" : [0.8, 0.8, 0.8],
 	"colorSpecular" : [0.8, 0.8, 0.8],
 	"illumination" : 2,
