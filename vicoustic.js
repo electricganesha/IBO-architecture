@@ -57,6 +57,10 @@ $.ajax({
 var placaSelected = 0;
 var patternSelected = 1;
 
+var modelSelectedSide = 1;
+var modelSelectedCenter = 1;
+var btEsq = false;
+var btDir = false;
 var lastColorPlacasLaterais = 0xffa023;
 var lastColorPlacaCentral = 0xffa023;
 var lastBGPlacasLaterais = 0x000000;
@@ -243,11 +247,21 @@ function updatebuttonsplaca(id) {
       {
         saveLastColors();
         removeAllPlacas();
+        if (btEsq == true){
+          modelSelectedSide = 0;
+        }else{
+          modelSelectedCenter = 0;
+        }
         document.getElementById('models1Del').src = "img/Botao_mais.png";
       }else{
         saveLastColors();
         removeAllPlacas();
         patternSelected = 1;
+        if (btEsq == true){
+          modelSelectedSide = 1;
+        }else{
+          modelSelectedCenter = 1;
+        }
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models1Del').src = "img/Botao_apagar.png";
       }
@@ -259,11 +273,21 @@ function updatebuttonsplaca(id) {
       {
         saveLastColors();
         removeAllPlacas();
+        if (btEsq == true){
+          modelSelectedSide = 0;
+        }else{
+          modelSelectedCenter = 0;
+        }
         document.getElementById('models2Del').src = "img/Botao_mais.png";
       }else{
         saveLastColors();
         removeAllPlacas();
         patternSelected = 2;
+        if (btEsq == true){
+          modelSelectedSide = 2;
+        }else{
+          modelSelectedCenter = 2;
+        }
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models2Del').src = "img/Botao_apagar.png";
       }
@@ -275,11 +299,21 @@ function updatebuttonsplaca(id) {
       {
         saveLastColors();
         removeAllPlacas();
+        if (btEsq == true){
+          modelSelectedSide = 0;
+        }else{
+          modelSelectedCenter = 0;
+        }
         document.getElementById('models3Del').src = "img/Botao_mais.png";
       }else{
         saveLastColors();
         removeAllPlacas();
         patternSelected = 3;
+        if (btEsq == true){
+          modelSelectedSide = 3;
+        }else{
+          modelSelectedCenter = 3;
+        }
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models3Del').src = "img/Botao_apagar.png";
       }
@@ -291,19 +325,19 @@ function updatebuttonsplaca(id) {
 
 function saveLastColors()
 {
-  var lateral = mainScene.getObjectByName("placafrente");
+  var lateral = mainScene.getObjectByName("Laterais_Frente");
   if(lateral != undefined)
     lastColorPlacasLaterais = lateral.material.color;
 
-  var central = mainScene.getObjectByName("placaCentroFrente");
+  var central = mainScene.getObjectByName("Central_Frente");
   if(central != undefined)
     lastColorPlacaCentral = central.material.color;
 
-  var bglateral = mainScene.getObjectByName("placatras");
+  var bglateral = mainScene.getObjectByName("Laterais_Tras");
     if(bglateral != undefined)
   lastBGPlacasLaterais = bglateral.material.color;
 
-  var bgcentral = mainScene.getObjectByName("placaCentroTras");
+  var bgcentral = mainScene.getObjectByName("Central_Tras");
     if(bgcentral != undefined)
   lastBGPlacaCentral= bgcentral.material.color;
 }
@@ -321,9 +355,43 @@ function menu(){
 
    document.getElementById("menuBTEsquerda").onclick = function() {
      placaSelected = 1;
+     btEsq = true;
+     btDir = false;
      document.getElementById('menuEsquerda').style.display = "block";
      document.getElementById('trianguloImgEsquerda').style.display = "block";
      document.getElementById('trianguloImgCentro').style.display = "none";
+
+     console.log(mainScene.getObjectByName("Laterais_Tras").material.color.getHexString());
+     if ( mainScene.getObjectByName("Laterais_Tras").material.color.getHexString() == "ffffff"){
+       document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffffff";
+        document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffa023";
+     }else{
+       document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffa023";
+       document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffffff";
+     }
+     $.farbtastic('#picker').setColor("#" + mainScene.getObjectByName("Laterais_Frente").material.color.getHexString());
+     switch (modelSelectedSide) {
+       case 0:
+          document.getElementById('models1Del').src = "img/Botao_mais.png";
+          document.getElementById('models2Del').src = "img/Botao_mais.png";
+          document.getElementById('models3Del').src = "img/Botao_mais.png";
+         break;
+       case 1:
+          document.getElementById('models1Del').src = "img/Botao_apagar.png";
+          document.getElementById('models2Del').src = "img/Botao_mais.png";
+          document.getElementById('models3Del').src = "img/Botao_mais.png";
+         break;
+       case 2:
+         document.getElementById('models1Del').src = "img/Botao_mais.png";
+         document.getElementById('models2Del').src = "img/Botao_apagar.png";
+         document.getElementById('models3Del').src = "img/Botao_mais.png";
+         break;
+       case 3:
+       document.getElementById('models1Del').src = "img/Botao_mais.png";
+       document.getElementById('models2Del').src = "img/Botao_mais.png";
+       document.getElementById('models3Del').src = "img/Botao_apagar.png";
+         break;
+     }
    }
 
    document.getElementById("menuBTEsquerda").onmouseover = function() {
@@ -354,9 +422,42 @@ function menu(){
 
   document.getElementById("menuBTCentro").onclick = function() {
     placaSelected = 2;
+    btEsq = false;
+    btDir = true;
     document.getElementById('menuEsquerda').style.display = "block";
     document.getElementById('trianguloImgCentro').style.display = "block";
     document.getElementById('trianguloImgEsquerda').style.display = "none";
+    console.log(mainScene.getObjectByName("Central_Tras").material.color.getHexString());
+    if (mainScene.getObjectByName("Central_Tras").material.color.getHexString() == "ffffff"){
+       document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffa023";
+       document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffffff";
+    }else{
+      document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffa023";
+      document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffffff";
+    }
+    $.farbtastic('#picker').setColor("#" + mainScene.getObjectByName("Central_Frente").material.color.getHexString());
+    switch (modelSelectedCenter) {
+      case 0:
+         document.getElementById('models1Del').src = "img/Botao_mais.png";
+         document.getElementById('models2Del').src = "img/Botao_mais.png";
+         document.getElementById('models3Del').src = "img/Botao_mais.png";
+        break;
+      case 1:
+         document.getElementById('models1Del').src = "img/Botao_apagar.png";
+         document.getElementById('models2Del').src = "img/Botao_mais.png";
+         document.getElementById('models3Del').src = "img/Botao_mais.png";
+        break;
+      case 2:
+        document.getElementById('models1Del').src = "img/Botao_mais.png";
+        document.getElementById('models2Del').src = "img/Botao_apagar.png";
+        document.getElementById('models3Del').src = "img/Botao_mais.png";
+        break;
+      case 3:
+      document.getElementById('models1Del').src = "img/Botao_mais.png";
+      document.getElementById('models2Del').src = "img/Botao_mais.png";
+      document.getElementById('models3Del').src = "img/Botao_apagar.png";
+      break;
+    }
   }
 
   document.getElementById("menuBTCentro").onmouseover = function() {
@@ -385,13 +486,15 @@ function menu(){
   /*------------------------------------------*/
 
   document.getElementById("backgroundButtonWhite").onclick = function() {
-
+    document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffa023";
+    document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffffff";
     updatePlacaBackground("0xffffff");
 
   }
 
   document.getElementById("backgroundButtonBlack").onclick = function() {
-
+    document.getElementById("backgroundButtonWhite").style.border = "solid 3px #ffffff";
+    document.getElementById("backgroundButtonBlack").style.border = "solid 3px #ffa023";
     updatePlacaBackground("0x000000");
 
   }
@@ -740,7 +843,7 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
       material.combine = THREE.MixOperation;
 
       testePlacas = new THREE.Mesh(geometry,material);
-      testePlacas.name="placatras";
+      testePlacas.name="Laterais_Tras";
       testePlacas.position.x = testePlacas.position.x-0.2;
       testePlacas.position.y = testePlacas.position.y+0.3;
       mainScene.add(testePlacas);
@@ -762,7 +865,7 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
       material.combine = THREE.MixOperation;
 
       testePlacas = new THREE.Mesh(geometry,material);
-      testePlacas.name="placafrente";
+      testePlacas.name="Laterais_Frente";
       testePlacas.position.x = testePlacas.position.x-0.2;
       testePlacas.position.y = testePlacas.position.y+0.3;
 
@@ -779,7 +882,7 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
         material.combine = THREE.MixOperation;
 
         testePlacas = new THREE.Mesh(geometry,material);
-        testePlacas.name="placaCentroTras";
+        testePlacas.name="Central_Tras";
         testePlacas.position.x = testePlacas.position.x-0.2;
         testePlacas.position.y = testePlacas.position.y+0.3;
         mainScene.add(testePlacas);
@@ -800,7 +903,7 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
         material.combine = THREE.MixOperation;
 
         testePlacas = new THREE.Mesh(geometry,material);
-        testePlacas.name="placaCentroFrente";
+        testePlacas.name="Central_Frente";
         testePlacas.position.x = testePlacas.position.x-0.2;
         testePlacas.position.y = testePlacas.position.y+0.3;
         mainScene.add(testePlacas);
@@ -1474,13 +1577,13 @@ function setupTweenOverview() {
 
 function updateColorPlacaCentro(colorPlacaCentro) {
   var colorHexCentro = colorPlacaCentro.replace("#", "0x");
-  var placaCentro = mainScene.getObjectByName("placaCentroFrente");
+  var placaCentro = mainScene.getObjectByName("Central_Frente");
   placaCentro.material.color.setHex(colorHexCentro);
 }
 
 function updateColorPlacasLaterais(colorPlacaLateral) {
   var colorHexLaterais = colorPlacaLateral.replace("#", "0x");
-  var placaEsquerda = mainScene.getObjectByName("placafrente");
+  var placaEsquerda = mainScene.getObjectByName("Laterais_Frente");
   placaEsquerda.material.color.setHex(colorHexLaterais);
 }
 
@@ -1488,11 +1591,11 @@ function updatePlacaBackground(colorBG) {
 
   switch (placaSelected) {
     case(1):
-      var placaEsquerda = mainScene.getObjectByName("placatras");
+      var placaEsquerda = mainScene.getObjectByName("Laterais_Tras");
       placaEsquerda.material.color.setHex(colorBG);
     break;
     case(2):
-      var placaCentro = mainScene.getObjectByName("placaCentroTras");
+      var placaCentro = mainScene.getObjectByName("Central_Tras");
       placaCentro.material.color.setHex(colorBG);
     break;
   }
@@ -1503,19 +1606,15 @@ function removeAllPlacas()
 
   switch (placaSelected) {
     case 1:
-      var selectedObject = mainScene.getObjectByName("placafrente");
+      var selectedObject = mainScene.getObjectByName("Laterais_Frente");
       mainScene.remove(selectedObject);
-      var selectedObject = mainScene.getObjectByName("placaDireitaFrente");
-      mainScene.remove(selectedObject);
-      var selectedObject = mainScene.getObjectByName("placatras");
-      mainScene.remove(selectedObject);
-      var selectedObject = mainScene.getObjectByName("placaDireitaTras");
+      var selectedObject = mainScene.getObjectByName("Laterais_Tras");
       mainScene.remove(selectedObject);
     break;
     case 2:
-      var selectedObject = mainScene.getObjectByName("placaCentroFrente");
+      var selectedObject = mainScene.getObjectByName("Central_Frente");
       mainScene.remove(selectedObject);
-      var selectedObject = mainScene.getObjectByName("placaCentroTras");
+      var selectedObject = mainScene.getObjectByName("Central_Tras");
       mainScene.remove(selectedObject);
     break;
   }

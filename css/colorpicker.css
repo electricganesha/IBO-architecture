@@ -240,3 +240,30 @@ input[type="text"]
   border-radius:50px;
   box-shadow: inset 0px 2px 1px 1px #d9d9da;
 }
+
+.favButtonMenuBg
+{
+  width: 200px;
+  margin-left: -37px;
+  margin-top: -5px;
+  position:relative;
+
+}
+
+.favButtonMenuBg ul
+{
+  height:10%;
+  list-style:none;
+}
+
+.favButtonMenuBg ul li
+{
+  margin-left:10px;
+  margin-bottom:10px;
+  float:left;
+  height:35px;
+  width:35px;
+  border: 1px white solid;
+  border-radius:50px;
+
+}
