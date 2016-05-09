@@ -618,6 +618,23 @@ function loadSala() {
   loadPlacas(0xffa023,0x000000,0xffa023,0x000000);
   placaSelected = 0;
 
+  loaderJSON.load( "models/Cinema_Motta/cortina.js", function( geometry,material ) {
+    cortina = new THREE.Mesh(geometry,material);
+    cortina.name="cortina";
+    mainScene.add(cortina);
+  });
+
+  loaderJSON.load( "models/Cinema_Motta/palco.js", function( geometry,material ) {
+    material[0].side = THREE.DoubleSide;
+    material[0].wireframe = true;
+
+    palco = new THREE.Mesh(geometry,material);
+    palco.name="palco";
+    mainScene.add(palco);
+
+    selectedObj = mainScene.getObjectByName("palco");
+  });
+
   // load JSON model
   loaderJSON.load( "models/Cinema_Motta/Sala_Baked_03.js", function( geometry, materials ) {
 
@@ -693,20 +710,23 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
 
   switch (placaSelected) {
     case 1:
-    loaderJSON.load( "models/Cinema_Motta/placafrente.js", function( geometry,material ) {
+    loaderJSON.load( "models/Cinema_Motta/Laterais_Tras.js", function( geometry,material ) {
 
       material = new THREE.MeshBasicMaterial({
         color:0x000000,
+        side:THREE.DoubleSide,
       });
 
       material.combine = THREE.MixOperation;
 
       testePlacas = new THREE.Mesh(geometry,material);
       testePlacas.name="placatras";
+      testePlacas.position.x = testePlacas.position.x-0.2;
+      testePlacas.position.y = testePlacas.position.y+0.3;
       mainScene.add(testePlacas);
     });
 
-    loaderJSON.load( "models/Cinema_Motta/placatras.js", function( geometry,material ) {
+    loaderJSON.load( "models/Cinema_Motta/Laterais_Frente.js", function( geometry,material ) {
 
 
       texturaAlpha = textureLoader.load('models/organic.jpg');
@@ -723,57 +743,21 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
         opacity:0.8,
         alphaMap:texturaAlpha,
         normalMap:texturaNormal,
+        side:THREE.DoubleSide,
       });
 
       material.combine = THREE.MixOperation;
 
       testePlacas = new THREE.Mesh(geometry,material);
       testePlacas.name="placafrente";
+      testePlacas.position.x = testePlacas.position.x-0.2;
+      testePlacas.position.y = testePlacas.position.y+0.3;
+
       mainScene.add(testePlacas);
     });
-
-    loaderJSON.load( "models/Cinema_Motta/placaDireitaFrente.js", function( geometry,material ) {
-
-      material = new THREE.MeshBasicMaterial({
-        color:colorBGLaterais,
-      });
-
-      material.combine = THREE.MixOperation;
-
-      testePlacas = new THREE.Mesh(geometry,material);
-      testePlacas.name="placaDireitaTras";
-      mainScene.add(testePlacas);
-    });
-
-    loaderJSON.load( "models/Cinema_Motta/placaDireitaTras.js", function( geometry,material ) {
-
-
-      texturaAlpha = textureLoader.load('models/organic.jpg');
-
-      texturaAlpha.wrapS = THREE.RepeatWrapping;
-      texturaAlpha.wrapT = THREE.RepeatWrapping;
-      texturaAlpha.repeat.set( 4, 8 );
-
-      texturaNormal = textureLoader.load('models/chesterfield-normal.png');
-
-      material = new THREE.MeshBasicMaterial({
-        color:colorLaterais,
-        transparent:true,
-        opacity:0.8,
-        alphaMap:texturaAlpha,
-        normalMap:texturaNormal,
-      });
-
-      material.combine = THREE.MixOperation;
-
-      testePlacas = new THREE.Mesh(geometry,material);
-      testePlacas.name="placaDireitaFrente";
-      mainScene.add(testePlacas);
-    });
-
       break;
       case 2:
-      loaderJSON.load( "models/Cinema_Motta/placaCentroTras.js", function( geometry,material ) {
+      loaderJSON.load( "models/Cinema_Motta/Central_Tras.js", function( geometry,material ) {
 
         material = new THREE.MeshBasicMaterial({
           color:colorBGCentral,
@@ -782,13 +766,13 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
         material.combine = THREE.MixOperation;
 
         testePlacas = new THREE.Mesh(geometry,material);
-        testePlacas.position.x = testePlacas.position.x-0.7;
-        testePlacas.position.y = testePlacas.position.y+0.7;
         testePlacas.name="placaCentroTras";
+        testePlacas.position.x = testePlacas.position.x-0.2;
+        testePlacas.position.y = testePlacas.position.y+0.3;
         mainScene.add(testePlacas);
       });
 
-      loaderJSON.load( "models/Cinema_Motta/placaCentroFrente.js", function( geometry,material ) {
+      loaderJSON.load( "models/Cinema_Motta/Central_Frente.js", function( geometry,material ) {
 
 
         texturaAlpha = textureLoader.load('models/organic.jpg');
@@ -810,9 +794,9 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
         material.combine = THREE.MixOperation;
 
         testePlacas = new THREE.Mesh(geometry,material);
-        testePlacas.position.x = testePlacas.position.x-0.7;
-        testePlacas.position.y = testePlacas.position.y+0.7;
         testePlacas.name="placaCentroFrente";
+        testePlacas.position.x = testePlacas.position.x-0.2;
+        testePlacas.position.y = testePlacas.position.y+0.3;
         mainScene.add(testePlacas);
       });
         break;
@@ -1492,8 +1476,6 @@ function updateColorPlacasLaterais(colorPlacaLateral) {
   var colorHexLaterais = colorPlacaLateral.replace("#", "0x");
   var placaEsquerda = mainScene.getObjectByName("placafrente");
   placaEsquerda.material.color.setHex(colorHexLaterais);
-  var placaDireita = mainScene.getObjectByName("placaDireitaFrente");
-  placaDireita.material.color.setHex(colorHexLaterais);
 }
 
 function updatePlacaBackground(colorBG) {
@@ -1502,8 +1484,6 @@ function updatePlacaBackground(colorBG) {
     case(1):
       var placaEsquerda = mainScene.getObjectByName("placatras");
       placaEsquerda.material.color.setHex(colorBG);
-      var placaDireita = mainScene.getObjectByName("placaDireitaTras");
-      placaDireita.material.color.setHex(colorBG);
     break;
     case(2):
       var placaCentro = mainScene.getObjectByName("placaCentroTras");
@@ -1733,8 +1713,6 @@ function removeAllPlacas()
           // Check which area is being dragged
           var pos = fb.widgetCoords(event);
           fb.circleDrag = Math.max(Math.abs(pos.x), Math.abs(pos.y)) * 2 > 150;
-
-          console.log(pos.x);
 
           fb.circleDrag = Math.abs(pos.x) < 51;
 
