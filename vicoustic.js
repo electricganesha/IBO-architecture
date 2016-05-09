@@ -55,6 +55,7 @@ $.ajax({
 });
 
 var placaSelected = 0;
+var patternSelected = 1;
 
 var lastColorPlacasLaterais = 0xffa023;
 var lastColorPlacaCentral = 0xffa023;
@@ -246,6 +247,7 @@ function updatebuttonsplaca(id) {
       }else{
         saveLastColors();
         removeAllPlacas();
+        patternSelected = 1;
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models1Del').src = "img/Botao_apagar.png";
       }
@@ -261,6 +263,7 @@ function updatebuttonsplaca(id) {
       }else{
         saveLastColors();
         removeAllPlacas();
+        patternSelected = 2;
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models2Del').src = "img/Botao_apagar.png";
       }
@@ -276,6 +279,7 @@ function updatebuttonsplaca(id) {
       }else{
         saveLastColors();
         removeAllPlacas();
+        patternSelected = 3;
         loadPlacas(lastColorPlacasLaterais,lastBGPlacasLaterais,lastColorPlacaCentral,lastBGPlacaCentral);
         document.getElementById('models3Del').src = "img/Botao_apagar.png";
       }
@@ -707,6 +711,22 @@ function loadSala() {
 function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
 {
 
+  var texturaAlpha;
+
+  switch (patternSelected) {
+    case 1:
+      texturaAlpha = textureLoader.load('models/Cinema_Motta/DiamondPattern_Mask.png');
+    break;
+    case 2:
+      texturaAlpha = textureLoader.load('models/Cinema_Motta/StyloPattern_Mask.png');
+    break;
+    case 3:
+      texturaAlpha = textureLoader.load('models/Cinema_Motta/SymmetricPattern_Mask.png');
+    break;
+    default:
+      texturaAlpha = textureLoader.load('models/Cinema_Motta/DiamondPattern_Mask.png');
+  }
+
 
   switch (placaSelected) {
     case 1:
@@ -728,21 +748,14 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
 
     loaderJSON.load( "models/Cinema_Motta/Laterais_Frente.js", function( geometry,material ) {
 
-
-      texturaAlpha = textureLoader.load('models/organic.jpg');
-
-      texturaAlpha.wrapS = THREE.RepeatWrapping;
-      texturaAlpha.wrapT = THREE.RepeatWrapping;
-      texturaAlpha.repeat.set( 4, 8 );
-
-      texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+      //texturaNormal = textureLoader.load('models/chesterfield-normal.png');
 
       material = new THREE.MeshBasicMaterial({
         color:colorLaterais,
         transparent:true,
         opacity:0.8,
         alphaMap:texturaAlpha,
-        normalMap:texturaNormal,
+        //normalMap:texturaNormal,
         side:THREE.DoubleSide,
       });
 
@@ -774,21 +787,14 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
 
       loaderJSON.load( "models/Cinema_Motta/Central_Frente.js", function( geometry,material ) {
 
-
-        texturaAlpha = textureLoader.load('models/organic.jpg');
-
-        texturaAlpha.wrapS = THREE.RepeatWrapping;
-        texturaAlpha.wrapT = THREE.RepeatWrapping;
-        texturaAlpha.repeat.set( 4, 8 );
-
-        texturaNormal = textureLoader.load('models/chesterfield-normal.png');
+        //texturaNormal = textureLoader.load('models/chesterfield-normal.png');
 
         material = new THREE.MeshBasicMaterial({
           color:colorCentral,
           transparent:true,
           opacity:0.8,
           alphaMap:texturaAlpha,
-          normalMap:texturaNormal,
+          //normalMap:texturaNormal,
         });
 
         material.combine = THREE.MixOperation;

@@ -19,7 +19,6 @@
 	"DbgColor" : 15658734,
 	"DbgIndex" : 0,
 	"DbgName" : "lambert5SG",
-	"colorAmbient" : [0.0, 0.0, 0.0],
 	"colorDiffuse" : [0.5, 0.5, 0.5],
 	"illumination" : 4,
 	"opticalDensity" : 1.0
