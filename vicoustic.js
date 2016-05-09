@@ -1127,12 +1127,10 @@ function onMouseMove(e) {
 
   // define the look speed through the mouse position
   // if mouse is moving to the edges of the screen, speed increases
-  if(!isSelected && !sittingDown && !mouseIsOnMenu && !mouseIsOutOfDocument)
+  if(!isSelected && !mouseIsOnMenu && !mouseIsOutOfDocument)
   controls.lookSpeed = (Math.abs(mouse.x) + Math.abs(mouse.y)) * 0.05;
-  else if (isSelected && !sittingDown && !mouseIsOnMenu && !mouseIsOutOfDocument)
+  else if (isSelected && !mouseIsOnMenu && !mouseIsOutOfDocument)
   controls.lookSpeed = 0.10;
-  else if (sittingDown)
-  controls.lookSpeed = (Math.abs(mouse.x) + Math.abs(mouse.y)) * 0.2;
 
   // if we are in the cinema overview
   if(!sittingDown)
