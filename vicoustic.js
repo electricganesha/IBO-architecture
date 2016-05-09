@@ -836,7 +836,7 @@ function loadPlacas(colorLaterais,colorBGLaterais,colorCentral,colorBGCentral)
     loaderJSON.load( "models/Cinema_Motta/Laterais_Tras.js", function( geometry,material ) {
 
       material = new THREE.MeshBasicMaterial({
-        color:0x000000,
+        color:colorBGLaterais,
         side:THREE.DoubleSide,
       });
 
